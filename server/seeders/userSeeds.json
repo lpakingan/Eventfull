@@ -1,0 +1,62 @@
+[
+    {
+        "_id": "64fe015fddb125f03aa9c1ea",
+        "username": "user_one",
+        "email": "one@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2915",
+        "username": "user_two",
+        "email": "two@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2916",
+        "username": "user_three",
+        "email": "three@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2917",
+        "username": "user_four",
+        "email": "four@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2918",
+        "username": "user_five",
+        "email": "five@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2919",
+        "username": "user_six",
+        "email": "six@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d291a",
+        "username": "user_seven",
+        "email": "seven@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d291b",
+        "username": "user_eight",
+        "email": "eight@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d291c",
+        "username": "user_nine",
+        "email": "nine@email.com",
+        "password": "password"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d291d",
+        "username": "user_ten",
+        "email": "ten@email.com",
+        "password": "password"
+    }
+]

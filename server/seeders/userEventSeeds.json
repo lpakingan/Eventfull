@@ -1,0 +1,31 @@
+[
+    {
+        "user": "64fe015fddb125f03aa9c1ea",
+        "event": "64fe06014114d03a2e0d2920",
+        "status": "Interested",
+        "preference": "Want a Group"
+    },
+    {
+        "user": "64fe015fddb125f03aa9c1ea",
+        "event": "64fe06014114d03a2e0d2926",
+        "status": "Going",
+        "preference": "Want a Group"
+    },
+    {
+        "user": "64fe06014114d03a2e0d2915",
+        "event": "64fe06014114d03a2e0d2920",
+        "status": "Going",
+        "preference": "Want a Group"
+    },
+    {
+        "user": "64fe06014114d03a2e0d2916",
+        "event": "64fe06014114d03a2e0d2924",
+        "status": "Interested",
+        "preference": "Want to go Solo"
+    },
+    {
+        "user": "64fe06014114d03a2e0d2918",
+        "event": "64fe06014114d03a2e0d2928",
+        "status": "Not Going"
+    }
+]

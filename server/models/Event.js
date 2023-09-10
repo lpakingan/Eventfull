@@ -18,6 +18,18 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: [true, "Location is required"],
   },
+  performer: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
+  link: {
+    type: String,
+  },
+  eventId: {
+    type: String,
+  },
 });
 
 const Event = mongoose.model("Event", EventSchema);
