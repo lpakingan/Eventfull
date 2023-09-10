@@ -21,6 +21,17 @@ const typeDefs = gql`
     eventId: ID
   }
 
+  input EventInput {
+    title: String
+    date: String
+    venue: String
+    location: String
+    performer: String
+    image: String
+    link: String
+    eventId: ID
+  }
+
   type UserEvent {
     _id: ID
     user: User
@@ -37,7 +48,7 @@ const typeDefs = gql`
     all_user_events: [UserEvent]
     user(username: String!): User
     event(title: String!): Event
-    user_events(username: String!): UserEvent
+    user_events(user: String!): [UserEvent]
   }
 
   type Mutation {
@@ -45,23 +56,12 @@ const typeDefs = gql`
 
     login(email: String!, password: String!): User
 
-    createEvent(
-      title: String!
-      date: String!
-      venue: String!
-      location: String!
-      performer: String
-      image: String
-      link: String
-      eventId: ID
-    ): Event
+    createEvent(eventData: EventInput!): Event
 
-    addEvent(
-      username: String!
-      title: String!
-      date: String!
-      venue: String!
-      location: String!
+    addUserEvent(
+      eventData: EventInput!
+      status: String!
+      preference: String!
     ): UserEvent
   }
 `;

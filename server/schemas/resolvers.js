@@ -58,15 +58,15 @@ const resolvers = {
       }
     },
 
-    user_events: async (parent, { username }) => {
+    user_events: async (parent, { user }) => {
       try {
-        const user = await User.findOne({ username: username });
+        const searched_user = await User.findOne({ username: user });
 
-        if (!user) {
+        if (!searched_user) {
           return null;
         }
 
-        return await UserEvent.findOne({ user: user._id })
+        return await UserEvent.find({ user: searched_user._id })
           .populate("event")
           .populate("user");
       } catch (err) {
@@ -102,19 +102,10 @@ const resolvers = {
       return { token, user };
     },
 
-    createEvent: async (
-      parent,
-      { title, date, venue, location, performer, image, link, eventId }
-    ) => {
-      const newEvent = await Event.create({
-        title,
-        date,
-        venue,
-        location,
-        performer,
-        image,
-        link,
-        eventId,
+    // create a new event that is not on SeatGeek API
+    createEvent: async (parent, { eventData }) => {
+      const newEvent = new Event({
+        ...eventData,
       });
       try {
         const event = await newEvent.save();
@@ -123,6 +114,33 @@ const resolvers = {
         throw new (err, "error in createEvent mutation")();
       }
     },
+
+    // refactor this later to Input class in typeDef
+    // user will click a button to save an event to their own library of events
+    // create a new event in the local database using the parameters fetched from the API (to get ObjectId)
+    // addUserEvent: async (
+    //   parent,
+    //   { eventData, user, event, date, status, preference }
+    // ) => {
+    //   const newEvent = new Event({
+    //     ...eventData,
+    //   });
+    //   const saved_event = await newEvent.save();
+
+    //   const newUserEvent = await UserEvent.create({
+    //     user,
+    //     event,
+    //     date,
+    //     status,
+    //     preference,
+    //   });
+    //   try {
+    //     const user_event = await newUserEvent.save();
+    //     return user_event;
+    //   } catch (err) {
+    //     throw new (err, "error in addUserEvent mutation")();
+    //   }
+    // },
   },
 };
 module.exports = resolvers;
