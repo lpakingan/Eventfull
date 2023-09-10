@@ -13,7 +13,6 @@ const UserEventSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: [true, "Date is required"],
   },
   status: {
     type: String,
@@ -23,7 +22,7 @@ const UserEventSchema = new mongoose.Schema({
   },
   preference: {
     type: String,
-    enum: ["Want a Group", "Want to go Solo"],
+    enum: ["Want a Group", "Want to go Solo", "No preference"],
     required: [true, "Preference is required"],
     default: "No preference",
   },

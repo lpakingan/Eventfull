@@ -34,6 +34,14 @@ const resolvers = {
       }
     },
 
+    all_user_events: async () => {
+      try {
+        return await UserEvent.find({}).populate("event").populate("user");
+      } catch (err) {
+        throw new (err, "error in all_user_events query")();
+      }
+    },
+
     user: async (parent, { username }) => {
       try {
         return await User.findOne({ username: username });
@@ -47,6 +55,22 @@ const resolvers = {
         return await Event.findOne({ title: title });
       } catch (err) {
         throw new (err, "error in event query")();
+      }
+    },
+
+    user_events: async (parent, { username }) => {
+      try {
+        const user = await User.findOne({ username: username });
+
+        if (!user) {
+          return null;
+        }
+
+        return await UserEvent.findOne({ user: user._id })
+          .populate("event")
+          .populate("user");
+      } catch (err) {
+        throw new (err, "error in user_events query")();
       }
     },
   },

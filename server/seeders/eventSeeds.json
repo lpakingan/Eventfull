@@ -1,0 +1,112 @@
+[
+    {
+        "_id": "64fe06014114d03a2e0d2920",
+        "title": "BEYONCÉ - RENAISSANCE WORLD TOUR",
+        "date": "2023-09-22T01:00:00",
+        "venue": "AT&T Stadium",
+        "location": "Arlington, TX 76011",
+        "performer": "Beyonce",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/beyonce-c8a248\/37\/49061\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/beyonce-renaissance-world-tour-tickets\/arlington-texas-at-t-stadium-2023-09-21-8-pm\/concert\/5922745",
+        "eventId": "5922745"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2921",
+        "title": "Kali Uchis",
+        "date": "2023-09-15T02:30:00",
+        "venue": "The GRAMMY Museum",
+        "location": "Los Angeles, CA 90015",
+        "performer": "Kali Uchis",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/kali-uchis-1fc52e\/309250\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/venues\/the-grammy-museum\/tickets",
+        "eventId": "6127434"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2922",
+        "title": "The Weeknd",
+        "date": "2023-09-30T00:30:00",
+        "venue": "Foro Sol",
+        "location": "Mexico City, Mexico",
+        "performer": "The Weeknd",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/the-weeknd-356255\/13733\/17499\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/the-weeknd-tickets\/mexico-city-mexico-foro-sol-4-2023-09-29-7-30-pm\/concert\/6025787",
+        "eventId": "6025787"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2923",
+        "title": "SZA",
+        "date": "2023-09-21T00:00:00",
+        "venue": "Kaseya Center",
+        "location": "Miami, FL 33132",
+        "performer": "SZA",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/sza-f22046\/143881\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/sza-tickets\/miami-florida-kaseya-center-2023-09-20-8-pm\/concert\/5994847",
+        "eventId": "5994847"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2924",
+        "title": "Laufey",
+        "date": "2023-09-17T03:00:00",
+        "venue": "Ford Amphitheatre",
+        "location": "Los Angeles, CA 90068",
+        "performer": "Laufey",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/laufey-30ce84\/794441\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/laufey-tickets\/los-angeles-california-ford-amphitheatre-2023-09-16-8-pm\/concert\/6063566",
+        "eventId": "6063566"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2925",
+        "title": "Polyphia",
+        "date": "2023-10-01T01:00:00",
+        "venue": "The Criterion - OKC",
+        "location": "Oklahoma City, OK 73104",
+        "performer": "Laufey",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/polyphia-95281f\/287878\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/polyphia-tickets\/oklahoma-city-oklahoma-the-criterion-okc-2023-09-30-8-pm\/concert\/5975960",
+        "eventId": "5975960"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2926",
+        "title": "Baltimore Comic-Con",
+        "date": "2023-09-10T14:00:00",
+        "venue": "Baltimore Convention Center",
+        "location": "Baltimore, MD 21201",
+        "performer": "Baltimore Comic-Con",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/baltimore-comic-con-0b1100\/312858\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/baltimore-comic-con-tickets\/comedy\/2023-09-10-10-am\/5992708",
+        "eventId": "5992708"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2927",
+        "title": "Hamilton - New York",
+        "date": "2023-09-10T17:00:00",
+        "venue": "Richard Rodgers Theatre",
+        "location": "New York, NY 10036",
+        "performer": "Hamilton",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/hamilton-328ab3\/97669\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/hamilton-new-york-tickets\/richard-rodgers-theatre-2023-09-10-1-pm\/broadway\/6009136",
+        "eventId": "6009136"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2928",
+        "title": "Preseason: 76ers at Celtics",
+        "date": "2023-10-08T22:00:00",
+        "venue": "TD Garden",
+        "location": "Boston, MA 02114",
+        "performer": "Boston Celtics",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/boston-celtics-e2a099\/2088\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/preseason-76ers-at-celtics-tickets\/10-8-2023-boston-massachusetts-td-garden\/nba\/6113462",
+        "eventId": "6113462"
+    },
+    {
+        "_id": "64fe06014114d03a2e0d2929",
+        "title": "Insomniac Countdown",
+        "date": "2023-12-30T11:30:00",
+        "venue": "NOS Events Center",
+        "location": "San Bernardino, CA 92408",
+        "performer": "Insomniac Countdown",
+        "image": "https:\/\/seatgeek.com\/images\/performers-landscape\/insomniac-countdown-1e65fc\/297290\/huge.jpg",
+        "link": "https:\/\/seatgeek.com\/insomniac-countdown-tickets",
+        "eventId": "5914932"
+    }
+]
