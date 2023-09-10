@@ -7,6 +7,13 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './components/styles/theme';
+import GlobalStyles from './components/styles/Global';
+
+
 
 const httpLink = createHttpLink({
     uri: '/graphql',
@@ -34,11 +41,18 @@ const client = new ApolloClient({
 function App() {
     return (
       <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+        <GlobalStyles />
         <Router>
-          <div>
-            <h1>Test React App code</h1>
-          </div>
+          <>
+          <Header />
+          <Routes>
+            <Route path="/" element={ <Home /> } />
+          </Routes>
+          </>
         </Router>
+
+        </ThemeProvider>
       </ApolloProvider>
     );
   }
