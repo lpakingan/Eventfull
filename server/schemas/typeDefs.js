@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    events: [Event]
+    events: [UserEvent]
   }
 
   type Event {
@@ -39,6 +39,20 @@ const typeDefs = gql`
     date: String
     status: String
     preference: String
+    feed: [Post]
+  }
+
+  type Post {
+    _id: ID
+    user_event: UserEvent
+    user: User
+    content: String
+  }
+
+  input PostInput {
+    user_event: String
+    user: String
+    content: String
   }
 
   type Query {
@@ -58,11 +72,9 @@ const typeDefs = gql`
 
     createEvent(eventData: EventInput!): Event
 
-    addUserEvent(
-      eventData: EventInput!
-      status: String!
-      preference: String!
-    ): UserEvent
+    addUserEvent(eventData: EventInput!, user: String!): UserEvent
+
+    addPost(postData: PostInput!): UserEvent
   }
 `;
 

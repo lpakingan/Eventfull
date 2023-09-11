@@ -1,4 +1,4 @@
-const { User, Event, UserEvent } = require("../models");
+const { User, Event, UserEvent, Post } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -36,7 +36,10 @@ const resolvers = {
 
     all_user_events: async () => {
       try {
-        return await UserEvent.find({}).populate("event").populate("user");
+        return await UserEvent.find({})
+          .populate("event")
+          .populate("user")
+          .populate({ path: "feed", populate: ["user", "user_event"] });
       } catch (err) {
         throw new (err, "error in all_user_events query")();
       }
@@ -68,7 +71,8 @@ const resolvers = {
 
         return await UserEvent.find({ user: searched_user._id })
           .populate("event")
-          .populate("user");
+          .populate("user")
+          .populate({ path: "feed", populate: ["user", "user_event"] });
       } catch (err) {
         throw new (err, "error in user_events query")();
       }
@@ -115,32 +119,53 @@ const resolvers = {
       }
     },
 
-    // refactor this later to Input class in typeDef
     // user will click a button to save an event to their own library of events
     // create a new event in the local database using the parameters fetched from the API (to get ObjectId)
-    // addUserEvent: async (
-    //   parent,
-    //   { eventData, user, event, date, status, preference }
-    // ) => {
-    //   const newEvent = new Event({
-    //     ...eventData,
-    //   });
-    //   const saved_event = await newEvent.save();
+    addUserEvent: async (parent, { eventData, user }) => {
+      // if (context.user) {
+      const newEvent = new Event({
+        ...eventData,
+      });
+      const saved_event = await newEvent.save();
 
-    //   const newUserEvent = await UserEvent.create({
-    //     user,
-    //     event,
-    //     date,
-    //     status,
-    //     preference,
-    //   });
-    //   try {
-    //     const user_event = await newUserEvent.save();
-    //     return user_event;
-    //   } catch (err) {
-    //     throw new (err, "error in addUserEvent mutation")();
-    //   }
-    // },
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user },
+        { $push: { events: saved_event } },
+        { new: true }
+      );
+
+      const newUserEvent = await UserEvent.create({
+        user,
+        event: saved_event._id,
+      });
+      try {
+        const user_event = await newUserEvent.save();
+        return user_event;
+      } catch (err) {
+        throw new (err, "error in addUserEvent mutation")();
+      }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
+    // replace params once login is implemented
+    // addPost: async (parent, { content }, context) => {
+    addPost: async (parent, { postData }) => {
+      // if (context.user) {
+      const newPost = new Post({
+        ...postData,
+      });
+
+      const post = await newPost.save();
+
+      const updatedUserEvent = await UserEvent.findOneAndUpdate(
+        { _id: postData.user_event },
+        { $push: { feed: post } },
+        { new: true }
+      );
+      return updatedUserEvent;
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 module.exports = resolvers;

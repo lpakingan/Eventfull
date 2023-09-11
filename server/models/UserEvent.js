@@ -26,6 +26,7 @@ const UserEventSchema = new mongoose.Schema({
     required: [true, "Preference is required"],
     default: "No preference",
   },
+  feed: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
 });
 
 const UserEvent = mongoose.model("UserEvent", UserEventSchema);
