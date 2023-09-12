@@ -6,12 +6,17 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './pages/Home';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Explore from './components/Explore';
+import Social from './components/Social';
+import Profile from './components/Profile';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './components/styles/theme';
 import GlobalStyles from './components/styles/Global';
+
 
 
 
@@ -38,20 +43,21 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
   });
 
-function App() {
+  function App() {
     return (
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Router>
-          <>
-          <Header />
-          <Routes>
-            <Route path="/" element={ <Home /> } />
-          </Routes>
-          </>
-        </Router>
-
+          <GlobalStyles />
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Explore" element={<Explore />} />
+              <Route path="/Social" element={<Social />} />
+              <Route path="/Profile" element={<Profile />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
         </ThemeProvider>
       </ApolloProvider>
     );
