@@ -128,18 +128,19 @@ const resolvers = {
       });
       const saved_event = await newEvent.save();
 
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user },
-        { $push: { events: saved_event } },
-        { new: true }
-      );
-
       const newUserEvent = await UserEvent.create({
         user,
         event: saved_event._id,
       });
+      const user_event = await newUserEvent.save();
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user },
+        { $push: { events: user_event } },
+        { new: true }
+      );
       try {
-        const user_event = await newUserEvent.save();
+        const user = await updatedUser.save();
         return user_event;
       } catch (err) {
         throw new (err, "error in addUserEvent mutation")();
@@ -166,6 +167,31 @@ const resolvers = {
       // }
       // throw new AuthenticationError("You need to be logged in!");
     },
+
+    // removeUserEvent: async (parent, { user_event }, context) => {
+    removeUserEvent: async (parent, { user, user_event }) => {
+      // if (context.user) {
+      const updatedUser = await User.findByIdAndUpdate(
+        // { _id: context.user._id },
+        { _id: user },
+        { $pull: { events: user_event } },
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        throw new Error(`User does not exist!`);
+      }
+
+      const removedUserEvent = await UserEvent.findOneAndDelete({
+        _id: user_event,
+      });
+
+      return updatedUser;
+      // }
+
+      // throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
+
 module.exports = resolvers;
