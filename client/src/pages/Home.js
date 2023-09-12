@@ -1,4 +1,4 @@
-import SocialFeed from "../components/socialFeed";
+import SocialFeed from "../components/Home";
 
 export default function Home() {
     return (
