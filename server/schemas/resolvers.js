@@ -121,6 +121,7 @@ const resolvers = {
 
     // user will click a button to save an event to their own library of events
     // create a new event in the local database using the parameters fetched from the API (to get ObjectId)
+    // user: _id of User
     addUserEvent: async (parent, { eventData, user }) => {
       // if (context.user) {
       const newEvent = new Event({
@@ -148,9 +149,9 @@ const resolvers = {
       // throw new AuthenticationError("You need to be logged in!");
     },
 
-    // replace params once login is implemented
-    // addPost: async (parent, { content }, context) => {
+    // add a post/comment to an event
     addPost: async (parent, { postData }) => {
+      // addPost: async (parent, { content }, context) => {
       // if (context.user) {
       const newPost = new Post({
         ...postData,
@@ -168,8 +169,10 @@ const resolvers = {
       // throw new AuthenticationError("You need to be logged in!");
     },
 
-    // removeUserEvent: async (parent, { user_event }, context) => {
+    // remove an event from a user's events array and removes the accompanying event that shows up in the feed
+    // user: _id of User, user_event: _id of UserEvent
     removeUserEvent: async (parent, { user, user_event }) => {
+      // removeUserEvent: async (parent, { user_event }, context) => {
       // if (context.user) {
       const updatedUser = await User.findByIdAndUpdate(
         // { _id: context.user._id },
@@ -187,6 +190,29 @@ const resolvers = {
       });
 
       return updatedUser;
+      // }
+
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+
+    // allows user to update an event they have added to their feed (their status and preference)
+    // user_event = _id of UserEvent
+    updateUserEvent: async (
+      parent,
+      { user_event, new_status, new_preference }
+    ) => {
+      // if (context.user) {
+      const updatedUserEvent = await UserEvent.findByIdAndUpdate(
+        { _id: user_event },
+        { status: new_status, preference: new_preference },
+        { new: true }
+      );
+
+      if (!updatedUserEvent) {
+        throw new Error(`UserEvent does not exist!`);
+      }
+
+      return updatedUserEvent;
       // }
 
       // throw new AuthenticationError("You need to be logged in!");
