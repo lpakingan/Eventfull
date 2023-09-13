@@ -3,19 +3,22 @@
         "_id": "64fe015fddb125f03aa9c1ea",
         "username": "user_one",
         "email": "one@email.com",
-        "password": "password"
+        "password": "password",
+        "events": ["64fe81be4800727162b5d094", "64fe81be4800727162b5d095"]
     },
     {
         "_id": "64fe06014114d03a2e0d2915",
         "username": "user_two",
         "email": "two@email.com",
-        "password": "password"
+        "password": "password",
+        "events": ["64fe81be4800727162b5d096"]
     },
     {
         "_id": "64fe06014114d03a2e0d2916",
         "username": "user_three",
         "email": "three@email.com",
-        "password": "password"
+        "password": "password",
+        "events": ["64fe81be4800727162b5d097"]
     },
     {
         "_id": "64fe06014114d03a2e0d2917",
@@ -27,7 +30,8 @@
         "_id": "64fe06014114d03a2e0d2918",
         "username": "user_five",
         "email": "five@email.com",
-        "password": "password"
+        "password": "password",
+        "events": ["64fe81be4800727162b5d098"]
     },
     {
         "_id": "64fe06014114d03a2e0d2919",

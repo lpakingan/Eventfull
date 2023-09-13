@@ -18,14 +18,16 @@
         "user": "64fe06014114d03a2e0d2915",
         "event": "64fe06014114d03a2e0d2920",
         "status": "Going",
-        "preference": "Want a Group"
+        "preference": "Want a Group",
+        "feed": ["6500d869d5aa393df11edb1f"]
     },
     {
         "_id": "64fe81be4800727162b5d097",
         "user": "64fe06014114d03a2e0d2916",
         "event": "64fe06014114d03a2e0d2924",
         "status": "Interested",
-        "preference": "Want to go Solo"
+        "preference": "Want to go Solo",
+        "feed": "6500d869d5aa393df11edb20"
     },
     {
         "_id": "64fe81be4800727162b5d098",
