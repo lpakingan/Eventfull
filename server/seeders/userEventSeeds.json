@@ -27,7 +27,7 @@
         "event": "64fe06014114d03a2e0d2924",
         "status": "Interested",
         "preference": "Want to go Solo",
-        "feed": "6500d869d5aa393df11edb20"
+        "feed": ["6500d869d5aa393df11edb20"]
     },
     {
         "_id": "64fe81be4800727162b5d098",

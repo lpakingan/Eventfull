@@ -27,7 +27,13 @@ const resolvers = {
 
     users: async () => {
       try {
-        const users = await User.find({});
+        const users = await User.find({}).populate({
+          path: "events",
+          populate: {
+            path: "event",
+            model: "Event",
+          },
+        });
         return users;
       } catch (err) {
         throw new (err, "error in users query")();
@@ -47,7 +53,13 @@ const resolvers = {
 
     user: async (parent, { username }) => {
       try {
-        return await User.findOne({ username: username });
+        return await User.findOne({ username: username }).populate({
+          path: "events",
+          populate: {
+            path: "event",
+            model: "Event",
+          },
+        });
       } catch (err) {
         throw new (err, "error in user query")();
       }
