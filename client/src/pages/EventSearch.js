@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { useMutation } from "@apollo/client";
-import { SAVE_USEREVENT } from "../utils/mutations";
+import { ADD_USEREVENT } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
@@ -11,7 +11,7 @@ const SearchEvents = () => {
   // state for holding search input
   const [searchInput, setSearchInput] = useState("");
 
-  // const [addUserEvent, { error }] = useMutation(SAVE_EVENT);
+  const [addUserEvent, { error }] = useMutation(ADD_USEREVENT);
 
   // handle search input and send request to back-end for fetching data from API with API key (hidden from client)
   const handleFormSubmit = async (event) => {
@@ -49,6 +49,32 @@ const SearchEvents = () => {
     }
   };
 
+  const handleAddEvent = async (eventId) => {
+    const eventToSave = searchedEvents.find(
+      (event) => event.eventId === eventId
+    );
+
+    // get token
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    // if (!token) {
+    //   return false;
+    // }
+
+    try {
+      const { data } = await addUserEvent({
+        variables: {
+          eventData: { ...eventToSave },
+          // test user id from seed file; remove once login is implemented
+          user: "64fe015fddb125f03aa9c1ea",
+        },
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <div>
@@ -68,7 +94,7 @@ const SearchEvents = () => {
         </form>
       </div>
 
-      <h2 className="pt-5">
+      <h2>
         {searchedEvents.length
           ? `Viewing ${searchedEvents.length} Events:`
           : "No events found!"}
@@ -87,8 +113,18 @@ const SearchEvents = () => {
               </p>
               <p className="event-time">{event.date}</p>
               {/* {Auth.loggedIn() && ( */}
-              {/* <button
-                {handle saving the event data here}
+              <button
+                // disabled={savedEventIds?.some(
+                //   (savedId) => savedId === event.eventId
+                // )}
+                className="add-event-btn"
+                onClick={() => handleAddEvent(event.eventId)}
+              >
+                {/* {savedEventIds?.some((savedId) => savedId === event.eventId)
+                  ? "You have already added this event!"
+                  : "Add this event!"} */}
+                Add Event
+              </button>
               {/* )}  */}
             </div>
           </div>
