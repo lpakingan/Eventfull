@@ -70,7 +70,7 @@ export const ADD_POST = gql`
 
 export const REMOVE_USER_EVENT = gql`
     mutation removeUserEvent($user: String!, $event: String!) {
-        removeUserEvent(user: $user, event: $event) {
+        removeUserEvent(user: $user, user_event: $event) {
             _id
             username
             user_events {
