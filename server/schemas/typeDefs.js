@@ -77,6 +77,16 @@ const typeDefs = gql`
     addPost(postData: PostInput!): UserEvent
 
     removeUserEvent(user: String!, user_event: String!): User
+
+    updateUserEvent(
+      user_event: String!
+      new_status: String!
+      new_preference: String!
+    ): UserEvent
+
+    removePost(user_event: String!, post: String!): UserEvent
+
+    updatePost(post: String!, new_content: String!): Post
   }
 `;
 
