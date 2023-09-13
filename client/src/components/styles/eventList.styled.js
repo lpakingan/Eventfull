@@ -20,5 +20,5 @@ export const StyledEventList = styled.div`
 
 .Card-body {
     padding: 1rem;
-
+}
 `;
