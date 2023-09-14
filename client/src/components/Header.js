@@ -1,7 +1,7 @@
-import { StyledHeader, StyledLogo, StyledProfileIcon } from "./styles/Header.styled";
+import { StyledHeader, StyledLogo } from "./styles/Header.styled";
 import logo from "../assets/eventfull_logo.png";
-import profileIcon from "../assets/profile-1.png"; 
 import { Link } from "react-router-dom";
+import Icon from './icons';
 
 export default function Header() {
     return (
@@ -10,7 +10,7 @@ export default function Header() {
                 <StyledLogo src={logo} alt="logo" />
             </Link>
             <Link to="/profile">
-                <StyledProfileIcon src={profileIcon} alt="profile icon" />
+                <Icon icon="akar-icons:person" />
             </Link>
         </StyledHeader>
     );

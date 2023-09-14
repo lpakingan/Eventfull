@@ -13,15 +13,6 @@ export const StyledProfile = styled.div`
     }
 `;
 
-export const StyledProfileIcon = styled.img`
-    width: 400px;
-    height: 400px;
-    margin: 0 auto;
-    border-style: solid;
-    border: 1px solid #ddd;
-`;
-
-
 export const StyledProfileInfo = styled.div`
     display: flex;
     flex-direction: column;

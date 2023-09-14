@@ -5,7 +5,7 @@ export const StyledFooter = styled.footer`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme }) => theme.colors.header};
+    background-color: none;
     padding: 20px;
     position: fixed;
     bottom: 0;
@@ -26,10 +26,10 @@ export const StyledListItem = styled.li`
 
 export const StyledLink = styled(Link)`
     text-decoration: none;
-    color: black; /* Set the default link color to black */
+    color: none; /* Set the default link color to black */
     
     &.active {
-        color: white; /* Set the active link color to white */
+        color: black; /* Set the active link color to white */
         font-weight: bold;
     }
 `;
