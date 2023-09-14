@@ -14,6 +14,8 @@ import Explore from "./components/Explore";
 import Social from "./components/Social";
 import Profile from "./components/Profile";
 import Search from "./pages/EventSearch";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./components/styles/theme";
 import GlobalStyles from "./components/styles/Global";
@@ -54,6 +56,8 @@ function App() {
             <Route path="/Social" element={<Social />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Search" element={<Search />} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/Login" element={<Login />} />
           </Routes>
           <Footer />
         </BrowserRouter>
