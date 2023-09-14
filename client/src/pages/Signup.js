@@ -6,14 +6,13 @@ import { StyledSignup } from "../components/styles/signup.styled";
 //TODO need to add value attribute to input tags and on change event to update state
 //TODO add link attribute to login
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 
 const Signup = () => {
-  // set initial form state
   const [signupFormData, setSignupFormData] = useState({
     username: "",
     email: "",
@@ -21,6 +20,7 @@ const Signup = () => {
   });
 
   const [addUser, { error }] = useMutation(ADD_USER);
+  const [signupError, setSignupError] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,6 +36,17 @@ const Signup = () => {
       event.stopPropagation();
     }
 
+    // revisit this for error handling
+    // if (signupFormData.email) {
+    //   setSignupError("An account with that email already exists!");
+    // } else if (signupFormData.username) {
+    //   setSignupError("An account with that username already exists");
+    // } else {
+    //   setSignupError(
+    //     "Unable to sign-up with your provided credentials! Please try again."
+    //   );
+    // }
+
     try {
       const { data } = await addUser({
         variables: { ...signupFormData },
@@ -44,6 +55,9 @@ const Signup = () => {
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
+      setSignupError(
+        "Unable to sign-up with your provided credentials! Please try again."
+      );
     }
 
     setSignupFormData({
@@ -103,6 +117,7 @@ const Signup = () => {
             <button className="submit" type="submit">
               Sign Up
             </button>
+            <div className="error-message">{signupError}</div>
           </div>
         </div>
       </form>
