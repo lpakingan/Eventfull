@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useMutation } from "@apollo/client";
 import { ADD_USEREVENT } from "../utils/mutations";
-import EventList from "../components/EventList";
+import ExploreEventList from "../components/ExploreEventList";
 
 import Auth from "../utils/auth";
 
@@ -100,8 +100,8 @@ const Explore = () => {
           ? `Viewing ${searchedEvents.length} Events:`
           : "No events found!"}
       </h2>
-      
-      <EventList events={searchedEvents} />
+
+      <ExploreEventList events={searchedEvents} />
     </>
   );
 };
