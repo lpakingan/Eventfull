@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
+    //* brush script mt font if we want to match the logo
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
     }
     `;
 
