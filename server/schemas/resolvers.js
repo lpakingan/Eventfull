@@ -6,9 +6,15 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select(
-          "-__v -password"
-        );
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate({
+            path: "events",
+            populate: {
+              path: "event",
+              model: "Event",
+            },
+          });
 
         return userData;
       }
@@ -92,15 +98,14 @@ const resolvers = {
   },
 
   Mutation: {
-
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create(username, email, password);
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user);
-      
+
       return { token, user };
     },
 
-    login: async ({ email, password }) => {
+    login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -132,31 +137,38 @@ const resolvers = {
 
     // user will click a button to save an event to their own library of events
     // create a new event in the local database using the parameters fetched from the API (to get ObjectId)
-    addUserEvent: async (parent, { eventData, user }) => {
-      // if (context.user) {
-      const newEvent = new Event({
-        ...eventData,
-      });
-      const saved_event = await newEvent.save();
+    addUserEvent: async (parent, { eventData }, context) => {
+      if (context.user) {
+        try {
+          const user = context.user;
 
-      const newUserEvent = await UserEvent.create({
-        user,
-        event: saved_event._id,
-      });
-      const user_event = await newUserEvent.save();
+          const newEvent = new Event({
+            ...eventData,
+          });
 
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user },
-        { $push: { events: user_event } },
-        { new: true }
-      );
-      try {
-        const user = await updatedUser.save();
-        return user_event;
-      } catch (err) {
-        throw new (err, "error in addUserEvent mutation")();
+          const saved_event = await newEvent.save();
+
+          const newUserEvent = await UserEvent.create({
+            user: user._id,
+            event: saved_event._id,
+          });
+
+          const user_event = await newUserEvent.save();
+
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $push: { events: user_event } },
+            { new: true }
+          );
+
+          const updated_user = await updatedUser.save();
+          return user_event;
+        } catch (err) {
+          throw new Error("error in addUserEvent mutation" + err);
+        }
+      } else {
+        throw new AuthenticationError("You need to be logged in!");
       }
-      // throw new AuthenticationError("You need to be logged in!");
     },
 
     // replace params once login is implemented

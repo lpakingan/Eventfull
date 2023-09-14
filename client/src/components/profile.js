@@ -1,29 +1,34 @@
-import { StyledProfile, StyledProfileInfo, StyledProfileEventContainer } from "./styles/profile.styled"
+import {
+  StyledProfile,
+  StyledProfileInfo,
+  StyledProfileEventContainer,
+} from "./styles/profile.styled";
 import { Icon } from "@iconify/react";
-import { useQuery } from "@apollo/client"
-// change to query user or query me to populate user's events
-import { QUERY_EVENTS } from "../utils/queries";
-import EventList from "./EventList";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../utils/queries";
+import ProfileEventList from "./ProfileEventList";
 
 export default function Profile() {
-    const { data, loading } = useQuery(QUERY_EVENTS);
+  const { data, loading } = useQuery(QUERY_ME);
 
-    if (loading) {
-        return <div>Loading...</div>
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    const eventData = data?.events || [];
+  const userData = data?.me || [];
+  const userEvents = userData.events;
+  console.log(userEvents);
 
-    return (
-        <StyledProfile>
-            <StyledProfileInfo>
-                <Icon icon="akar-icons:person" />
-                    <h3>Username</h3>
-                    <h3>Description: Welcome to my profile!</h3>
-            </StyledProfileInfo>
-            <StyledProfileEventContainer>
-                <EventList events={eventData} />
-            </StyledProfileEventContainer>
-        </StyledProfile>
-    )
+  return (
+    <StyledProfile>
+      <StyledProfileInfo>
+        <Icon icon="akar-icons:person" />
+        <h3>{userData.username}</h3>
+        <h3>I'm going to {userEvents.length} event(s)!</h3>
+      </StyledProfileInfo>
+      <StyledProfileEventContainer>
+        <ProfileEventList events={userEvents} />
+      </StyledProfileEventContainer>
+    </StyledProfile>
+  );
 }
