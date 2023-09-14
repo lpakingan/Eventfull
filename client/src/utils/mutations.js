@@ -18,65 +18,70 @@ export const ADD_USEREVENT = gql`
 `;
 
 export const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!) {
-        addUser(username: $username, email: $email, password: $password) {
-            _id
-            username
-            email
-        }
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
     }
+  }
 `;
 
 export const LOGIN_USER = gql`
-    mutation login($email: String!, $password: String!) {
-        login(email: $email, password: $password) {
-            _id
-            username
-            email
-        }
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
     }
+  }
 `;
 
 export const CREATE_EVENT = gql`
-    mutation createEvent($eventInput: EventInput!) {
-        createEvent(eventInput: $eventInput) {
-            _id
-            title
-            date
-            venue
-            location
-            performer
-            image
-            link
-            eventId
-        }
+  mutation createEvent($eventInput: EventInput!) {
+    createEvent(eventInput: $eventInput) {
+      _id
+      title
+      date
+      venue
+      location
+      performer
+      image
+      link
+      eventId
     }
+  }
 `;
 
 export const ADD_POST = gql`
-    mutation addPost($postInput: PostInput!) {
-        addPost(postData: $postInput) {
-            _id
-            user_event {
-                _id
-            }
-            user {
-                _id
-            }
-            content
-        }
+  mutation addPost($postInput: PostInput!) {
+    addPost(postData: $postInput) {
+      _id
+      user_event {
+        _id
+      }
+      user {
+        _id
+      }
+      content
     }
+  }
 `;
 
 export const REMOVE_USER_EVENT = gql`
-    mutation removeUserEvent($user: String!, $event: String!) {
-        removeUserEvent(user: $user, event: $event) {
-            _id
-            username
-            user_events {
-                _id
-            }
-        }
+  mutation removeUserEvent($user: String!, $event: String!) {
+    removeUserEvent(user: $user, event: $event) {
+      _id
+      username
+      user_events {
+        _id
+      }
     }
+  }
 `;
-
