@@ -192,58 +192,56 @@ const resolvers = {
     },
 
     // remove a user's UserEvent from their array of events, the UserEvent entry itself, and any posts associated with that UserEvent
-    // removeUserEvent: async (parent, { user_event }, context) => {
-    removeUserEvent: async (parent, { user, user_event }) => {
-      // if (context.user) {
-      const updatedUser = await User.findByIdAndUpdate(
-        // { _id: context.user._id },
-        { _id: user },
-        { $pull: { events: user_event } },
-        { new: true }
-      );
+    removeUserEvent: async (parent, { user_event }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { events: user_event } },
+          { new: true }
+        );
 
-      if (!updatedUser) {
-        throw new Error(`User does not exist!`);
+        if (!updatedUser) {
+          throw new Error(`User does not exist!`);
+        }
+
+        const removedUserEvent = await UserEvent.findById({
+          _id: user_event,
+        });
+
+        const removedPosts = removedUserEvent.feed;
+
+        await Post.deleteMany({ _id: { $in: removedPosts } });
+
+        await UserEvent.findByIdAndDelete({ _id: user_event });
+
+        return updatedUser;
       }
 
-      const removedUserEvent = await UserEvent.findById({
-        _id: user_event,
-      });
-
-      const removedPosts = removedUserEvent.feed;
-
-      await Post.deleteMany({ _id: { $in: removedPosts } });
-
-      await UserEvent.findByIdAndDelete({ _id: user_event });
-
-      return updatedUser;
-      // }
-
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     // allows user to update an event they have added to their feed (their status and preference)
     // user_event = _id of UserEvent
-    // updateUserEvent: async (parent, { user_event, new_status, new_preference }, context) => {
     updateUserEvent: async (
       parent,
-      { user_event, new_status, new_preference }
+      { user_event, new_status, new_preference },
+      context
     ) => {
-      // if (context.user) {
-      const updatedUserEvent = await UserEvent.findByIdAndUpdate(
-        { _id: user_event },
-        { status: new_status, preference: new_preference },
-        { new: true }
-      );
+      if (context.user) {
+        const updatedUserEvent = await UserEvent.findByIdAndUpdate(
+          { _id: user_event },
+          { status: new_status, preference: new_preference },
+          { new: true }
+        );
 
-      if (!updatedUserEvent) {
-        throw new Error(`UserEvent does not exist!`);
+        if (!updatedUserEvent) {
+          throw new Error(`UserEvent does not exist!`);
+        }
+
+        return updatedUserEvent;
       }
 
-      return updatedUserEvent;
-      // }
-
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     // inputs: _id of user_event and _id of post

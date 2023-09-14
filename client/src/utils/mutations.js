@@ -75,13 +75,33 @@ export const ADD_POST = gql`
 `;
 
 export const REMOVE_USER_EVENT = gql`
-  mutation removeUserEvent($user: String!, $event: String!) {
-    removeUserEvent(user: $user, event: $event) {
+  mutation RemoveUserEvent($userEvent: String!) {
+    removeUserEvent(user_event: $userEvent) {
       _id
-      username
-      user_events {
+      events {
         _id
+        feed {
+          _id
+        }
       }
+    }
+  }
+`;
+
+export const UPDATE_USER_EVENT = gql`
+  mutation UpdateUserEvent(
+    $userEvent: String!
+    $newStatus: String!
+    $newPreference: String!
+  ) {
+    updateUserEvent(
+      user_event: $userEvent
+      new_status: $newStatus
+      new_preference: $newPreference
+    ) {
+      _id
+      status
+      preference
     }
   }
 `;
