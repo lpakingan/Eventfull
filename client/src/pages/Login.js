@@ -5,7 +5,7 @@ import { StyledLogin } from "../components/styles/login.styled";
 //TODO need to add value attribute to input tags and on change event to update state
 //TODO add link attribute to signup
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
@@ -18,6 +18,7 @@ const Login = () => {
   });
 
   const [login, { error }] = useMutation(LOGIN_USER);
+  const [loginError, setLoginError] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -42,6 +43,7 @@ const Login = () => {
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
+      setLoginError("Unable to login! Check your login credentials.");
     }
 
     // clear form values
@@ -89,6 +91,7 @@ const Login = () => {
             <button className="submit" type="submit">
               Login
             </button>
+            <div className="error-message">{loginError}</div>
           </div>
         </div>
       </form>
