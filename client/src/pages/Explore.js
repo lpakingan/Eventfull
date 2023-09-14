@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import { useMutation } from "@apollo/client";
 import { ADD_USEREVENT } from "../utils/mutations";
+import EventList from "../components/EventList";
 
 import Auth from "../utils/auth";
 
-const SearchEvents = () => {
+const Explore = () => {
   // state for holding searched event results
   const [searchedEvents, setSearchedEvents] = useState([]);
   // state for holding search input
@@ -99,39 +100,10 @@ const SearchEvents = () => {
           ? `Viewing ${searchedEvents.length} Events:`
           : "No events found!"}
       </h2>
-      {searchedEvents.map((event) => {
-        return (
-          <div key={event.eventId}>
-            {event.image ? (
-              <img src={event.image} alt={`${event.title} event`} />
-            ) : null}
-            <div className="event-details">
-              <h1 className="event-title">{event.title}</h1>
-              <p className="event-performer">{event.performer}</p>
-              <p className="event-location">
-                {event.venue} in {event.location}
-              </p>
-              <p className="event-time">{event.date}</p>
-              {/* {Auth.loggedIn() && ( */}
-              <button
-                // disabled={savedEventIds?.some(
-                //   (savedId) => savedId === event.eventId
-                // )}
-                className="add-event-btn"
-                onClick={() => handleAddEvent(event.eventId)}
-              >
-                {/* {savedEventIds?.some((savedId) => savedId === event.eventId)
-                  ? "You have already added this event!"
-                  : "Add this event!"} */}
-                Add Event
-              </button>
-              {/* )}  */}
-            </div>
-          </div>
-        );
-      })}
+      
+      <EventList events={searchedEvents} />
     </>
   );
 };
 
-export default SearchEvents;
+export default Explore;
