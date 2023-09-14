@@ -13,13 +13,14 @@ const ProfileEventList = ({ events }) => {
             <img src={event.event.image} alt={event.event.title} />
             <div className="Card-body">
               <h2>{event.event.title}</h2>
-              <p>{event.event.performer}</p>
+              <p>{event.event.venue}</p>
               <p>{event.event.date}</p>
               <p>{event.event.location}</p>
               <h3>{event.preference}</h3>
               <h3>{event.status}</h3>
               <div className="add-container">
                 <button className="add-btn">Edit event</button>
+                <button className="add-btn">Remove event</button>
               </div>
             </div>
           </div>

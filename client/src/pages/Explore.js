@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { useMutation } from "@apollo/client";
-import { ADD_USEREVENT } from "../utils/mutations";
 import ExploreEventList from "../components/ExploreEventList";
 
 import Auth from "../utils/auth";
@@ -11,8 +9,6 @@ const Explore = () => {
   const [searchedEvents, setSearchedEvents] = useState([]);
   // state for holding search input
   const [searchInput, setSearchInput] = useState("");
-
-  const [addUserEvent, { error }] = useMutation(ADD_USEREVENT);
 
   // handle search input and send request to back-end for fetching data from API with API key (hidden from client)
   const handleFormSubmit = async (event) => {
@@ -45,32 +41,6 @@ const Explore = () => {
       console.log(eventData);
       setSearchedEvents(eventData);
       setSearchInput("");
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleAddEvent = async (eventId) => {
-    const eventToSave = searchedEvents.find(
-      (event) => event.eventId === eventId
-    );
-
-    // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    // if (!token) {
-    //   return false;
-    // }
-
-    try {
-      const { data } = await addUserEvent({
-        variables: {
-          eventData: { ...eventToSave },
-          // test user id from seed file; remove once login is implemented
-          user: "64fe015fddb125f03aa9c1ea",
-        },
-      });
-      console.log(data);
     } catch (err) {
       console.error(err);
     }
