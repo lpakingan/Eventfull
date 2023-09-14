@@ -14,7 +14,6 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // commented out for testing
   context: authMiddleware,
 });
 
