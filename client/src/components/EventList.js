@@ -8,7 +8,6 @@ const EventList = ({ events }) => {
     
     return (
         <StyledEventList>
-            <h1>Your Upcoming Events...</h1>
         {events.map((event) => {
             return (
                 <div className="Card" key={event._id}>
@@ -17,6 +16,10 @@ const EventList = ({ events }) => {
                         <h2>{event.title}</h2>
                         <p>{event.performer}</p>
                         <p>{event.date}</p>
+                        <p>{event.location}</p>
+                        <div className="add-container">
+                            <button className="add-btn">Add event</button>
+                        </div>
                     </div>
                 </div>
             )

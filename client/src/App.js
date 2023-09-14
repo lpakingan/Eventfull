@@ -10,10 +10,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
-import Explore from "./components/explore";
 import Social from "./components/Social";
 import Profile from "./components/profile";
-import Search from "./pages/EventSearch";
+import Explore from "./pages/Explore";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { ThemeProvider } from "styled-components";
@@ -55,7 +54,6 @@ function App() {
             <Route path="/Explore" element={<Explore />} />
             <Route path="/Social" element={<Social />} />
             <Route path="/Profile" element={<Profile />} />
-            <Route path="/Search" element={<Search />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/Login" element={<Login />} />
           </Routes>
