@@ -2,10 +2,12 @@ import { StyledEventList } from "./styles/eventList.styled";
 import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
-import { UPDATE_USER_EVENT } from "../utils/mutations";
+import { UPDATE_USER_EVENT, REMOVE_USER_EVENT } from "../utils/mutations";
+// import { removeEventId } from "../utils/localStorage";
 
 const ProfileEventList = ({ events }) => {
-  const [updateUserEvent, { error }] = useMutation(UPDATE_USER_EVENT);
+  const [updateUserEvent] = useMutation(UPDATE_USER_EVENT);
+  const [removeUserEvent] = useMutation(REMOVE_USER_EVENT);
   const [isUpdateOpen, setisUpdateOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const [updatedData, setUpdatedData] = useState({
@@ -45,6 +47,25 @@ const ProfileEventList = ({ events }) => {
       setisUpdateOpen(false);
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const handleRemoveEvent = async (eventId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await removeUserEvent({
+        variables: { userEvent: eventId },
+      });
+      console.log(data);
+      // fix this later
+      // removeEventId(eventId);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -119,7 +140,12 @@ const ProfileEventList = ({ events }) => {
                     </div>
                   </div>
                 )}
-                <button className="add-btn">Remove event</button>
+                <button
+                  className="add-btn"
+                  onClick={() => handleRemoveEvent(event._id)}
+                >
+                  Remove event
+                </button>
               </div>
             </div>
           </div>
