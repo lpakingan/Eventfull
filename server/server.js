@@ -15,7 +15,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   // commented out for testing
-  // context: authMiddleware,
+  context: authMiddleware,
 });
 
 app.use(cors());
