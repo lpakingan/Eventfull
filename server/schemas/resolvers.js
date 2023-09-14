@@ -224,26 +224,26 @@ const resolvers = {
 
     // allows user to update an event they have added to their feed (their status and preference)
     // user_event = _id of UserEvent
-    // updateUserEvent: async (parent, { user_event, new_status, new_preference }, context) => {
     updateUserEvent: async (
       parent,
-      { user_event, new_status, new_preference }
+      { user_event, new_status, new_preference },
+      context
     ) => {
-      // if (context.user) {
-      const updatedUserEvent = await UserEvent.findByIdAndUpdate(
-        { _id: user_event },
-        { status: new_status, preference: new_preference },
-        { new: true }
-      );
+      if (context.user) {
+        const updatedUserEvent = await UserEvent.findByIdAndUpdate(
+          { _id: user_event },
+          { status: new_status, preference: new_preference },
+          { new: true }
+        );
 
-      if (!updatedUserEvent) {
-        throw new Error(`UserEvent does not exist!`);
+        if (!updatedUserEvent) {
+          throw new Error(`UserEvent does not exist!`);
+        }
+
+        return updatedUserEvent;
       }
 
-      return updatedUserEvent;
-      // }
-
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     // inputs: _id of user_event and _id of post

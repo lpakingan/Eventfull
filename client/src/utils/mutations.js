@@ -85,3 +85,21 @@ export const REMOVE_USER_EVENT = gql`
     }
   }
 `;
+
+export const UPDATE_USER_EVENT = gql`
+  mutation UpdateUserEvent(
+    $userEvent: String!
+    $newStatus: String!
+    $newPreference: String!
+  ) {
+    updateUserEvent(
+      user_event: $userEvent
+      new_status: $newStatus
+      new_preference: $newPreference
+    ) {
+      _id
+      status
+      preference
+    }
+  }
+`;
