@@ -88,6 +88,10 @@ export const QUERY_ALL_USER_EVENTS = gql`
         content
         user {
           username
+          _id
+        }
+        user_event {
+          _id
         }
       }
       status

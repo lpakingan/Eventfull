@@ -46,12 +46,14 @@ const typeDefs = gql`
     _id: ID
     user_event: UserEvent
     user: User
+    username: String
     content: String
   }
 
   input PostInput {
     user_event: String
     user: String
+    username: String
     content: String
   }
 
@@ -79,7 +81,7 @@ const typeDefs = gql`
 
     addUserEvent(eventData: EventInput!): UserEvent
 
-    addPost(postData: PostInput!): UserEvent
+    addPost(postData: PostInput!): Post
 
     removeUserEvent(user_event: String!): User
 
