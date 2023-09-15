@@ -34,7 +34,6 @@ app.get("/search/:query", async (req, res) => {
   try {
     const query = req.params.query;
     const apiKey = process.env.API_KEY;
-
     const response = await axios.get(
       `https://api.seatgeek.com/2/events?q=${query}&client_id=${apiKey}`,
       {
