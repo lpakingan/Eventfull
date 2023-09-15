@@ -8,6 +8,8 @@ import React, { useState, useEffect } from "react";
 const EventList = ({ events }) => {
   const [addUserEvent, { error }] = useMutation(ADD_USEREVENT);
   const [savedEventIds, setSavedEventIds] = useState(getSavedEventIds());
+  const [successMessage, setSuccessMessage] = useState("");
+  const [eventId, setEventId] = useState(null);
 
   // for initial first save
   useEffect(() => {
@@ -41,7 +43,12 @@ const EventList = ({ events }) => {
       // still working on getting this to fully function
       setSavedEventIds([...savedEventIds, eventToSave.eventId]);
       saveEventIds(savedEventIds);
-      console.log(savedEventIds);
+      setTimeout(function () {
+        window.location.href = "/profile";
+      }, 3000);
+      setSuccessMessage(
+        "Event successfully added! Redirecting to your profile.."
+      );
     } catch (err) {
       console.error(err);
     }
@@ -65,7 +72,10 @@ const EventList = ({ events }) => {
                     disabled={savedEventIds?.some(
                       (savedId) => savedId === event.eventId
                     )}
-                    onClick={() => handleAddEvent(event.eventId)}
+                    onClick={() => {
+                      handleAddEvent(event.eventId);
+                      setEventId(event.eventId);
+                    }}
                   >
                     {savedEventIds?.some(
                       (savedEventId) => savedEventId === event.eventId
@@ -73,6 +83,9 @@ const EventList = ({ events }) => {
                       ? "Event Already Saved!"
                       : "Save This Event!"}
                   </button>
+                )}
+                {eventId === event.eventId && (
+                  <div className="success-message">{successMessage}</div>
                 )}
               </div>
             </div>
