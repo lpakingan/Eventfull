@@ -63,6 +63,15 @@ export const StyledSignup = styled.div`
         font-size: 20px;
     }
 
+    .error-message {
+        color: red;
+        background: #ffe6e6;
+        border: 1px solid red;
+        padding: 10px;
+        width: 76%;
+        margin-bottom: 10px;
+      }
+
     .login-here {
         padding-left: 70px;
         margin-top: 20px;

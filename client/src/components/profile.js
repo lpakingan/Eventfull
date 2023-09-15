@@ -14,21 +14,27 @@ export default function Profile() {
   if (loading) {
     return <div>Loading...</div>;
   }
-
   const userData = data?.me || [];
-  const userEvents = userData.events;
+  const userEvents = userData?.events;
+  const hasUserData = userData && userEvents;
+  console.log(hasUserData);
   console.log(userEvents);
-
   return (
     <StyledProfile>
       <StyledProfileInfo>
-        <Icon icon="akar-icons:person" />
-        <h3>{userData.username}</h3>
-        <h3>I'm going to {userEvents.length} event(s)!</h3>
+        {hasUserData && (
+          <>
+            <h3>{userData.username}</h3>
+            <h3>I'm going to {userEvents.length} event(s)!</h3>
+            <Icon icon="akar-icons:person" />
+          </>
+        )}
       </StyledProfileInfo>
-      <StyledProfileEventContainer>
-        <ProfileEventList events={userEvents} />
-      </StyledProfileEventContainer>
+      {hasUserData && (
+        <StyledProfileEventContainer>
+          <ProfileEventList events={userEvents} />
+        </StyledProfileEventContainer>
+      )}
     </StyledProfile>
   );
 }
