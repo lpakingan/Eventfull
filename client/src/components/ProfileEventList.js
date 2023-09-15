@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER_EVENT, REMOVE_USER_EVENT } from "../utils/mutations";
-// import { removeEventId } from "../utils/localStorage";
+import { removeEventId } from "../utils/localStorage";
 
 const ProfileEventList = ({ events }) => {
   const [updateUserEvent] = useMutation(UPDATE_USER_EVENT);
@@ -50,7 +50,7 @@ const ProfileEventList = ({ events }) => {
     }
   };
 
-  const handleRemoveEvent = async (eventId) => {
+  const handleRemoveEvent = async (user_event, eventId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -59,11 +59,13 @@ const ProfileEventList = ({ events }) => {
 
     try {
       const { data } = await removeUserEvent({
-        variables: { userEvent: eventId },
+        variables: { userEvent: user_event },
       });
+      console.log(user_event, eventId);
       console.log(data);
       // fix this later
-      // removeEventId(eventId);
+      // removeEventId(String(eventId));
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -142,7 +144,9 @@ const ProfileEventList = ({ events }) => {
                 )}
                 <button
                   className="add-btn"
-                  onClick={() => handleRemoveEvent(event._id)}
+                  onClick={() =>
+                    handleRemoveEvent(event._id, event.event.eventId)
+                  }
                 >
                   Remove event
                 </button>
