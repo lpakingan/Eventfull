@@ -245,48 +245,46 @@ const resolvers = {
     },
 
     // inputs: _id of user_event and _id of post
-    // removeUserEvent: async (parent, { user_event, post }, context) => {
-    removePost: async (parent, { user_event, post }) => {
-      // if (context.user) {
-      const updatedUserEvent = await UserEvent.findByIdAndUpdate(
-        { _id: user_event },
-        { $pull: { feed: post } },
-        { new: true }
-      );
+    removePost: async (parent, { user_event, post }, context) => {
+      if (context.user) {
+        const updatedUserEvent = await UserEvent.findByIdAndUpdate(
+          { _id: user_event },
+          { $pull: { feed: post } },
+          { new: true }
+        );
 
-      if (!updatedUserEvent) {
-        throw new Error(`UserEvent does not exist!`);
+        if (!updatedUserEvent) {
+          throw new Error(`UserEvent does not exist!`);
+        }
+
+        const removedPost = await Post.findOneAndDelete({
+          _id: post,
+        });
+
+        return updatedUserEvent;
       }
 
-      const removedPost = await Post.findOneAndDelete({
-        _id: post,
-      });
-
-      return updatedUserEvent;
-      // }
-
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     // allows user to update a post's content on a UserEvent feed
     // post = _id of post
-    // updatePost: async (parent, { post, new_content }, context) => {
-    updatePost: async (parent, { post, new_content }) => {
-      // if (context.user) {
-      const updatedPost = await Post.findByIdAndUpdate(
-        { _id: post },
-        { content: new_content },
-        { new: true }
-      );
+    updatePost: async (parent, { post, new_content }, context) => {
+      if (context.user) {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: post },
+          { content: new_content },
+          { new: true }
+        );
 
-      if (!updatedPost) {
-        throw new Error(`Post does not exist!`);
+        if (!updatedPost) {
+          throw new Error(`Post does not exist!`);
+        }
+
+        return updatedPost;
       }
 
-      return updatedPost;
-      // }
-
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
