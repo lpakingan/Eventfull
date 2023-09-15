@@ -87,6 +87,9 @@ const EventList = ({ events }) => {
                 {eventId === event.eventId && (
                   <div className="success-message">{successMessage}</div>
                 )}
+                <a href={event.link} target="_blank">
+                  <button className="add-btn">Find Tickets</button>
+                </a>
               </div>
             </div>
           </div>

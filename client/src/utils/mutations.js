@@ -68,6 +68,7 @@ export const ADD_POST = gql`
       }
       user {
         _id
+        username
       }
       content
     }

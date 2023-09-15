@@ -51,7 +51,8 @@ const resolvers = {
         return await UserEvent.find({})
           .populate("event")
           .populate("user")
-          .populate({ path: "feed", populate: ["user", "user_event"] });
+          .populate({ path: "feed", populate: ["user", "user_event"] })
+          .sort({ createdAt: -1 });
       } catch (err) {
         throw new (err, "error in all_user_events query")();
       }
