@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import ExploreEventList from "../components/ExploreEventList";
+import { StyledExploreSearchBar } from "../components/styles/exploreSearchBar.styled";
+import Icon from '../components/icons';
 
 import Auth from "../utils/auth";
 
@@ -48,7 +50,7 @@ const Explore = () => {
 
   return (
     <>
-      <div>
+      <StyledExploreSearchBar>
         <h1>Search for Events!</h1>
         <form onSubmit={handleFormSubmit} className="event-search">
           <input
@@ -57,13 +59,14 @@ const Explore = () => {
             onChange={(e) => setSearchInput(e.target.value)}
             type="text"
             className="search-input"
-            placeholder="Search for events!"
+            placeholder="Example: Beyoncé"
           />
-          <button type="submit" variant="success">
-            Submit Search
+          <button type="submit" className="search-btn" variant="success">
+            <span>
+            <Icon icon="mingcute:search-line" />
+            </span>
           </button>
         </form>
-      </div>
 
       <h2>
         {searchedEvents.length
@@ -72,6 +75,7 @@ const Explore = () => {
       </h2>
 
       <ExploreEventList events={searchedEvents} />
+      </StyledExploreSearchBar>
     </>
   );
 };
