@@ -59,6 +59,7 @@ const Login = () => {
           <div className="header">
             <div className="text">Login</div>
             <div className="underline"></div>
+              {loginError && (<div className="error-message">{loginError}</div>)}
           </div>
           <div className="input-container">
             <div className="input">
@@ -85,13 +86,15 @@ const Login = () => {
             </div>
           </div>
           <div className="signup-here">
-            Don't Have an account? <span>Signup Here!</span>
+            Don't Have an account?
+            <a href="/signup">
+              <span style={{padding: "10px 0"}}>Signup Here!</span>
+            </a>
           </div>
           <div className="submit-container">
             <button className="submit" type="submit">
               Login
             </button>
-            <div className="error-message">{loginError}</div>
           </div>
         </div>
       </form>
