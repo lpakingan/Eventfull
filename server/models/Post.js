@@ -11,6 +11,9 @@ const PostSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "User is required"],
   },
+  username: {
+    type: String,
+  },
   content: {
     type: String,
     required: [true, "Content is required"],

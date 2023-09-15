@@ -173,23 +173,22 @@ const resolvers = {
     },
 
     // replace params once login is implemented
-    // addPost: async (parent, { content }, context) => {
-    addPost: async (parent, { postData }) => {
-      // if (context.user) {
-      const newPost = new Post({
-        ...postData,
-      });
+    addPost: async (parent, { postData }, context) => {
+      if (context.user) {
+        const newPost = new Post({
+          ...postData,
+        });
 
-      const post = await newPost.save();
+        const post = await newPost.save();
 
-      const updatedUserEvent = await UserEvent.findOneAndUpdate(
-        { _id: postData.user_event },
-        { $push: { feed: post } },
-        { new: true }
-      );
-      return updatedUserEvent;
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
+        const updatedUserEvent = await UserEvent.findOneAndUpdate(
+          { _id: postData.user_event },
+          { $push: { feed: post } },
+          { new: true }
+        );
+        return post;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     // remove a user's UserEvent from their array of events, the UserEvent entry itself, and any posts associated with that UserEvent

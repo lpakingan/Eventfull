@@ -60,17 +60,17 @@ export const CREATE_EVENT = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($postInput: PostInput!) {
-    addPost(postData: $postInput) {
+  mutation AddPost($postData: PostInput!) {
+    addPost(postData: $postData) {
       _id
+      content
+      username
+      user {
+        _id
+      }
       user_event {
         _id
       }
-      user {
-        _id
-        username
-      }
-      content
     }
   }
 `;

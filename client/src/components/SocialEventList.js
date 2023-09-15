@@ -1,6 +1,7 @@
 import { StyledEventList } from "./styles/eventList.styled";
 import Auth from "../utils/auth";
 import React, { useState } from "react";
+import Feed from "./Feed";
 
 const SocialEventList = ({ all_user_events }) => {
   const [openFeed, setOpenFeed] = useState({});
@@ -28,42 +29,26 @@ const SocialEventList = ({ all_user_events }) => {
               <p>{user_event.event.date}</p>
               <p>Preference: {user_event.preference}</p>
               <p>Status: {user_event.status}</p>
-              <p>View Comments ({user_event.feed.length})</p>
+              <p>View Posts ({user_event.feed.length})</p>
               <div className="add-container">
                 {Auth.loggedIn() && (
                   <button
                     className="add-btn"
                     onClick={() => toggleFeed(eventId)}
                   >
-                    {openedFeed ? "Hide Comments" : "View Comments"}
+                    {openedFeed ? "Hide Posts" : "View Posts"}
                   </button>
                 )}
 
                 {openedFeed && user_event.feed.length > 0 && (
                   <div>
-                    {user_event.feed.map((post) => (
-                      <div className="Card" key={post._id}>
-                        <h2>{post.user.username}</h2>
-                        <p>{post.content}</p>
-                        <button
-                          className="add-btn"
-                          //   onClick={() => addComment(context)}
-                        >
-                          Add Comment
-                        </button>
-                      </div>
-                    ))}
+                    <Feed posts={user_event.feed} />
                   </div>
                 )}
                 {openedFeed && user_event.feed.length === 0 && (
                   <div className="Card">
-                    <p>No comments available. Add one!</p>
-                    <button
-                      className="add-btn"
-                      //   onClick={() => addComment(context)}
-                    >
-                      Add Comment
-                    </button>
+                    <p>No Posts available. Add one!</p>
+                    <Feed posts={user_event.feed} />
                   </div>
                 )}
               </div>
