@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const PostSchema = new mongoose.Schema({
   user_event: {
@@ -18,9 +19,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: [true, "Content is required"],
   },
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
   },
 });
 

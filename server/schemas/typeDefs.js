@@ -48,6 +48,7 @@ const typeDefs = gql`
     user: User
     username: String
     content: String
+    createdAt: String
   }
 
   input PostInput {

@@ -93,6 +93,7 @@ export const QUERY_ALL_USER_EVENTS = gql`
         user_event {
           _id
         }
+        createdAt
       }
       status
       preference
@@ -166,6 +167,7 @@ export const QUERY_USER_EVENTS = gql`
         user_event {
           _id
         }
+        createdAt
       }
       status
       preference

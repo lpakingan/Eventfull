@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_POST, REMOVE_POST, UPDATE_POST } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_ALL_USER_EVENTS } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 import { StyledFeed } from "./styles/feed.styled";
 
 const EventFeed = ({ posts, user_event_id }) => {
@@ -101,9 +100,10 @@ const EventFeed = ({ posts, user_event_id }) => {
       {posts.map((post) => (
         <div className="post-container" key={post._id}>
           <p>
-            <span>{post.user.username}</span> says:
+            <span>{post.user.username}</span> said:
           </p>
           <p>{post.content}</p>
+          <p> {post.createdAt}</p>
           {userData.username === post.user.username && (
             <button
               className="delete-btn"

@@ -71,6 +71,7 @@ export const ADD_POST = gql`
       user_event {
         _id
       }
+      createdAt
     }
   }
 `;
