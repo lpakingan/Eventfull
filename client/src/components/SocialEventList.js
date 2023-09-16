@@ -29,32 +29,42 @@ const SocialEventList = ({ all_user_events }) => {
               <h1>{user_event.event.title}</h1>
               <p>{user_event.event.venue}</p>
               <p>{user_event.event.date}</p>
-              <p><span>Preference:</span> {user_event.preference}</p>
-              <p><span>Status:</span> {user_event.status}</p>
-              <p>View Posts ({user_event.feed.length})</p>
+              <p>
+                <span>Preference:</span> {user_event.preference}
+              </p>
+              <p>
+                <span>Status:</span> {user_event.status}
+              </p>
+              <p>{user_event.feed.length} Posts</p>
             </div>
             <div className="view-container">
-                {Auth.loggedIn() && (
-                  <button
-                    className="view-btn"
-                    onClick={() => toggleFeed(eventId)}
-                  >
-                    {openedFeed ? "Hide Posts" : "View Posts"}
-                  </button>
-                )}
+              {Auth.loggedIn() && (
+                <button
+                  className="view-btn"
+                  onClick={() => toggleFeed(eventId)}
+                >
+                  {openedFeed ? "Hide Posts" : "View Posts"}
+                </button>
+              )}
 
-                {openedFeed && user_event.feed.length > 0 && (
-                  <div className="post-container">
-                    <Feed posts={user_event.feed} />
-                  </div>
-                )}
-                {openedFeed && user_event.feed.length === 0 && (
-                  <div className="post-container">
-                    <p>No Posts yet. Add one!</p>
-                    <Feed posts={user_event.feed} />
-                  </div>
-                )}
-              </div>
+              {openedFeed && user_event.feed.length > 0 && (
+                <div className="post-container">
+                  <Feed
+                    posts={user_event.feed}
+                    user_event_id={user_event._id}
+                  />
+                </div>
+              )}
+              {openedFeed && user_event.feed.length === 0 && (
+                <div className="post-container">
+                  <p>No posts yet. Be the first to post!</p>
+                  <Feed
+                    posts={user_event.feed}
+                    user_event_id={user_event._id}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         );
       })}
