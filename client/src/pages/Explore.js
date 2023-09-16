@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import ExploreEventList from "../components/ExploreEventList";
 import { StyledExploreSearchBar } from "../components/styles/exploreSearchBar.styled";
-import Icon from '../components/icons';
+import Icon from "../components/icons";
 
 import Auth from "../utils/auth";
 
@@ -28,6 +28,8 @@ const Explore = () => {
       }
 
       const { events } = await response.json();
+
+      console.log(events);
 
       const eventData = events.map((event) => ({
         eventId: event.id,
@@ -63,17 +65,17 @@ const Explore = () => {
           />
           <button type="submit" className="search-btn" variant="success">
             <span>
-            <Icon icon="mingcute:search-line" />
+              <Icon icon="mingcute:search-line" />
             </span>
           </button>
         </form>
 
-      <h2>
-        {searchedEvents.length
-          ? `Viewing ${searchedEvents.length} Events:`
-          : "No events found!"}
-      </h2>
-      <ExploreEventList events={searchedEvents} />
+        <h2>
+          {searchedEvents.length
+            ? `Viewing ${searchedEvents.length} Events:`
+            : "No events found!"}
+        </h2>
+        <ExploreEventList events={searchedEvents} />
       </StyledExploreSearchBar>
     </>
   );

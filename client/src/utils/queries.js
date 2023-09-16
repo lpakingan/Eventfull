@@ -93,6 +93,7 @@ export const QUERY_ALL_USER_EVENTS = gql`
         user_event {
           _id
         }
+        createdAt
       }
       status
       preference
@@ -146,14 +147,27 @@ export const QUERY_USER_EVENTS = gql`
         username
       }
       event {
+        _id
         title
+        date
+        venue
+        location
+        performer
+        image
+        link
+        eventId
       }
       feed {
         _id
         content
         user {
           username
+          _id
         }
+        user_event {
+          _id
+        }
+        createdAt
       }
       status
       preference

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_POST, REMOVE_POST, UPDATE_POST } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { StyledFeed } from "./styles/feed.styled";
 
-const EventFeed = ({ posts }) => {
+const EventFeed = ({ posts, user_event_id }) => {
   const [postContent, setPostContent] = useState("");
   const [postId, setPostId] = useState("");
   const [showPostField, setPostField] = useState(false);
@@ -14,7 +13,6 @@ const EventFeed = ({ posts }) => {
   const [showUpdateField, setUpdateField] = useState(false);
   const [showUpdatePost, setShowUpdatePost] = useState(true);
   const [postError, setPostError] = useState("");
-  
 
   const [addPost] = useMutation(ADD_POST);
   const [removePost] = useMutation(REMOVE_POST);
@@ -42,7 +40,7 @@ const EventFeed = ({ posts }) => {
             postData: {
               user: userData._id,
               username: userData.username,
-              user_event: posts[0]?.user_event._id,
+              user_event: user_event_id,
               content: postContent,
             },
           },
@@ -52,7 +50,7 @@ const EventFeed = ({ posts }) => {
         setPostContent("");
         setPostField(false);
         setShowAddPost(true);
-        
+
         window.location.reload();
       } catch (e) {
         console.error(e);
@@ -101,8 +99,11 @@ const EventFeed = ({ posts }) => {
     <StyledFeed>
       {posts.map((post) => (
         <div className="post-container" key={post._id}>
-          <p><span>{post.user.username}</span> says:</p>
+          <p>
+            <span>{post.user.username}</span> said:
+          </p>
           <p>{post.content}</p>
+          <p> {post.createdAt}</p>
           {userData.username === post.user.username && (
             <button
               className="delete-btn"
@@ -127,12 +128,12 @@ const EventFeed = ({ posts }) => {
       ))}
       {showAddPost && (
         <div className="add-btn-container">
-        <button
-          className="add-btn"
-          onClick={() => [setPostField(true), setShowAddPost(false)]}
-        >
-          Add Post
-        </button>
+          <button
+            className="add-btn"
+            onClick={() => [setPostField(true), setShowAddPost(false)]}
+          >
+            Add Post
+          </button>
         </div>
       )}
 
