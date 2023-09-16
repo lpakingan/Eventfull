@@ -60,7 +60,7 @@ export default function Social() {
     <StyledSocial>
       <h1>Social</h1>
       <StyledExploreSearchBar>
-        <h1>See what another user is going to!</h1>
+        <h1>See what other users are going to!</h1>
         <form onSubmit={handleFormSubmit} className="event-search">
           <input
             name="searchInput"

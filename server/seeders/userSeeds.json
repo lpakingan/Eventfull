@@ -62,5 +62,11 @@
         "username": "user_ten",
         "email": "ten@email.com",
         "password": "password"
+    },
+    {
+        "_id": "65061b542f83a1943ff10f55",
+        "username": "tester",
+        "email": "tester@email.com",
+        "password": "$2b$10$XhMjuH4xWD.sHTmk1rScx.wRxv3H3B3s8Uh6XOmsmnteI6CAolYxO"
     }
 ]
