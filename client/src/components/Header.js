@@ -13,15 +13,31 @@ export default function Header() {
       </Link>
       {isLoggedIn ? (
         <>
+        <div className="nav-right">
           <Link to="/profile">
+            <p>Profile</p>
+            <span>
             <Icon icon="akar-icons:person" />
+            </span>
           </Link>
           <Logout />
+        </div>
         </>
       ) : (
-        <Link to="/login">
-          <Icon icon="akar-icons:person" />
+        <div className="nav-right">
+        <Link to="/signup">
+          <p>Signup</p>
+          <span>
+          <Icon icon="akar-icons:person-add" />
+          </span>
         </Link>
+        <Link to="/login">
+          <p>Login</p>
+          <span>
+          <Icon icon="akar-icons:person" />
+          </span>
+        </Link>
+        </div>
       )}
     </StyledHeader>
   );
