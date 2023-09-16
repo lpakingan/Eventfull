@@ -2,24 +2,12 @@ import { StyledEventList } from "./styles/eventList.styled";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_USEREVENT } from "../utils/mutations";
-import { saveEventIds, getSavedEventIds } from "../utils/localStorage";
 import React, { useState, useEffect } from "react";
 
 const EventList = ({ events }) => {
   const [addUserEvent, { error }] = useMutation(ADD_USEREVENT);
-  const [savedEventIds, setSavedEventIds] = useState(getSavedEventIds());
   const [successMessage, setSuccessMessage] = useState("");
   const [eventId, setEventId] = useState(null);
-
-  // for initial first save
-  useEffect(() => {
-    return () => saveEventIds(savedEventIds);
-  }, []);
-
-  // for any saves after first save
-  useEffect(() => {
-    saveEventIds(savedEventIds);
-  }, [savedEventIds]);
 
   const handleAddEvent = async (eventId) => {
     const eventToSave = events.find((event) => event.eventId === eventId);
@@ -36,9 +24,6 @@ const EventList = ({ events }) => {
         },
       });
       console.log(data);
-      // still working on getting this to fully function
-      setSavedEventIds([...savedEventIds, eventToSave.eventId]);
-      saveEventIds(savedEventIds);
       setTimeout(function () {
         window.location.href = "/profile";
       }, 3000);
@@ -65,19 +50,12 @@ const EventList = ({ events }) => {
                 {Auth.loggedIn() && (
                   <button
                     className="add-btn"
-                    disabled={savedEventIds?.some(
-                      (savedId) => savedId === event.eventId
-                    )}
                     onClick={() => {
                       handleAddEvent(event.eventId);
                       setEventId(event.eventId);
                     }}
                   >
-                    {savedEventIds?.some(
-                      (savedEventId) => savedEventId === event.eventId
-                    )
-                      ? "Event Saved!"
-                      : "Save This Event!"}
+                    Save Event
                   </button>
                 )}
                 {eventId === event.eventId && (
