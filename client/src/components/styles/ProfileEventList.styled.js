@@ -13,6 +13,11 @@ export const StyledProfileEventList = styled.div`
     span {
             color: ${({ theme }) => theme.colors.header};
         }
+    
+    a {
+        text-decoration: none;
+        color: ${({ theme }) => theme.colors.header};
+    }
 
     .Card {
         display: flex;
