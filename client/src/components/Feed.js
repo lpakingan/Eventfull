@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_POST, REMOVE_POST, UPDATE_POST } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import { StyledFeed } from "./styles/feed.styled";
 
 const EventFeed = ({ posts }) => {
   const [postContent, setPostContent] = useState("");
@@ -13,6 +14,7 @@ const EventFeed = ({ posts }) => {
   const [showUpdateField, setUpdateField] = useState(false);
   const [showUpdatePost, setShowUpdatePost] = useState(true);
   const [postError, setPostError] = useState("");
+  
 
   const [addPost] = useMutation(ADD_POST);
   const [removePost] = useMutation(REMOVE_POST);
@@ -50,6 +52,7 @@ const EventFeed = ({ posts }) => {
         setPostContent("");
         setPostField(false);
         setShowAddPost(true);
+        
         window.location.reload();
       } catch (e) {
         console.error(e);
@@ -95,10 +98,10 @@ const EventFeed = ({ posts }) => {
   };
 
   return (
-    <div className="Card">
+    <StyledFeed>
       {posts.map((post) => (
-        <div className="Card" key={post._id}>
-          <h2>{post.user.username}</h2>
+        <div className="post-container" key={post._id}>
+          <p><span>{post.user.username}</span> says:</p>
           <p>{post.content}</p>
           {userData.username === post.user.username && (
             <button
@@ -123,16 +126,18 @@ const EventFeed = ({ posts }) => {
         </div>
       ))}
       {showAddPost && (
+        <div className="add-btn-container">
         <button
           className="add-btn"
           onClick={() => [setPostField(true), setShowAddPost(false)]}
         >
           Add Post
         </button>
+        </div>
       )}
 
       {showPostField && (
-        <div className="Card">
+        <div className="feed-post">
           <form onSubmit={handleAddPost}>
             <textarea
               type="text"
@@ -149,7 +154,7 @@ const EventFeed = ({ posts }) => {
       )}
 
       {showUpdateField && (
-        <div className="Card">
+        <div className="feed-post">
           <form onSubmit={(event) => handleUpdatePost(event, postId)}>
             <textarea
               type="text"
@@ -163,7 +168,7 @@ const EventFeed = ({ posts }) => {
           </form>
         </div>
       )}
-    </div>
+    </StyledFeed>
   );
 };
 
