@@ -1,4 +1,4 @@
-import { StyledEventList } from "./styles/eventList.styled";
+import { StyledSocialEventList } from "./styles/socialEventList.styled";
 import Auth from "../utils/auth";
 import React, { useState } from "react";
 import Feed from "./Feed";
@@ -14,26 +14,29 @@ const SocialEventList = ({ all_user_events }) => {
   };
 
   return (
-    <StyledEventList>
+    <StyledSocialEventList>
       {all_user_events.map((user_event) => {
         const eventId = String(user_event._id);
         const openedFeed = openFeed[eventId];
 
         return (
           <div className="Card" key={String(user_event._id)}>
-            <img src={user_event.event.image} alt={user_event.event.title} />
-            <div className="Card-body">
+            <div className="Card-header">
               <h1>{user_event.user.username}</h1>
-              <h3>{user_event.event.title}</h3>
+            </div>
+            <div className="Card-body">
+              <img src={user_event.event.image} alt={user_event.event.title} />
+              <h1>{user_event.event.title}</h1>
               <p>{user_event.event.venue}</p>
               <p>{user_event.event.date}</p>
-              <p>Preference: {user_event.preference}</p>
-              <p>Status: {user_event.status}</p>
+              <p><span>Preference:</span> {user_event.preference}</p>
+              <p><span>Status:</span> {user_event.status}</p>
               <p>View Posts ({user_event.feed.length})</p>
-              <div className="add-container">
+            </div>
+            <div className="view-container">
                 {Auth.loggedIn() && (
                   <button
-                    className="add-btn"
+                    className="view-btn"
                     onClick={() => toggleFeed(eventId)}
                   >
                     {openedFeed ? "Hide Posts" : "View Posts"}
@@ -41,22 +44,21 @@ const SocialEventList = ({ all_user_events }) => {
                 )}
 
                 {openedFeed && user_event.feed.length > 0 && (
-                  <div>
+                  <div className="post-container">
                     <Feed posts={user_event.feed} />
                   </div>
                 )}
                 {openedFeed && user_event.feed.length === 0 && (
-                  <div className="Card">
-                    <p>No Posts available. Add one!</p>
+                  <div className="post-container">
+                    <p>No Posts yet. Add one!</p>
                     <Feed posts={user_event.feed} />
                   </div>
                 )}
               </div>
-            </div>
           </div>
         );
       })}
-    </StyledEventList>
+    </StyledSocialEventList>
   );
 };
 
