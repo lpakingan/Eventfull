@@ -146,13 +146,25 @@ export const QUERY_USER_EVENTS = gql`
         username
       }
       event {
+        _id
         title
+        date
+        venue
+        location
+        performer
+        image
+        link
+        eventId
       }
       feed {
         _id
         content
         user {
           username
+          _id
+        }
+        user_event {
+          _id
         }
       }
       status
