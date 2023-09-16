@@ -74,12 +74,12 @@ const ProfileEventList = ({ events }) => {
 
   if (!events.length) {
     return (
-      <div>
-        <h3>I'm not going to any events yet!</h3>
-        <Link to="/explore">
-          <button className="add-btn">Add an event!</button>
-        </Link>
-      </div>
+      <StyledProfileEventList>
+        <h1>My Events</h1>
+        <h3>You don't have any events yet, find your next one
+          <Link to="/explore">  here!</Link>
+        </h3>
+      </StyledProfileEventList>
     );
   }
 
