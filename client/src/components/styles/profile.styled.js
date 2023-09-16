@@ -25,6 +25,7 @@ export const StyledProfileInfo = styled.div`
 export const StyledProfileEventContainer = styled.div`
     align-items: center;
     margin: 0 auto;
+    max-width: 70%;
 `;
 
 

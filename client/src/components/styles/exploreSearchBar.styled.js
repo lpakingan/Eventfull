@@ -23,12 +23,13 @@ margin: 10px;
 }
 
 .search-btn {
-    background: #eaeaea;
     display: flex;
     align-items: center;
-    border-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    background: #eaeaea;
     font-size: 20px;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.header};
     cursor: pointer;
     border-style: none;
 }

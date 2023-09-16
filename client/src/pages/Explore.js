@@ -73,7 +73,6 @@ const Explore = () => {
           ? `Viewing ${searchedEvents.length} Events:`
           : "No events found!"}
       </h2>
-
       <ExploreEventList events={searchedEvents} />
       </StyledExploreSearchBar>
     </>
