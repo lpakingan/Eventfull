@@ -21,10 +21,6 @@ const EventList = ({ events }) => {
     saveEventIds(savedEventIds);
   }, [savedEventIds]);
 
-  if (!events.length) {
-    return <h3>No Events Yet</h3>;
-  }
-
   const handleAddEvent = async (eventId) => {
     const eventToSave = events.find((event) => event.eventId === eventId);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -80,7 +76,7 @@ const EventList = ({ events }) => {
                     {savedEventIds?.some(
                       (savedEventId) => savedEventId === event.eventId
                     )
-                      ? "Event Already Saved!"
+                      ? "Event Saved!"
                       : "Save This Event!"}
                   </button>
                 )}

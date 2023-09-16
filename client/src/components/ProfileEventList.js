@@ -1,4 +1,4 @@
-import { StyledEventList } from "./styles/eventList.styled";
+import { StyledProfileEventList } from "./styles/ProfileEventList.styled";
 import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
@@ -76,34 +76,50 @@ const ProfileEventList = ({ events }) => {
   }
 
   return (
-    <StyledEventList>
+    <StyledProfileEventList>
+      <h1>My Events</h1>
       {events.map((event) => {
         return (
           <div className="Card" key={String(event._id)}>
-            <img src={event.event.image} alt={event.event.title} />
-            <div className="Card-body">
+            <div className="Card-header">
+              <img src={event.event.image} alt={event.event.title} />
               <h1>{event.event.title}</h1>
-              <p>{event.event.venue}</p>
-              <p>{event.event.date}</p>
-              <p>{event.event.location}</p>
-              <h2>How do I prefer to go?</h2>
-              <h3>{event.preference}</h3>
-              <h2>I am</h2>
-              <h3>{event.status}</h3>
-              <div className="add-container">
+            </div>
+          <div className="Card-body">
+              <h2>{event.event.venue}</h2>
+              <h2>{event.event.date}</h2>
+              <h2>{event.event.location}</h2>
+              <h2><span>Status:</span > {event.preference}</h2>
+
+              <h2><span>Preference:</span > {event.status}</h2>
+          </div>
+          <div className="btn-container">
+                {(!isUpdateOpen || selectedId !== event._id) && (
+                  <>
                 <button
-                  className="add-btn"
+                  className="edit-btn"
                   onClick={() => openUpdateModal(event._id)}
                 >
-                  Edit event
+                  Edit
                 </button>
-                {isUpdateOpen && selectedId === event._id && (
+                <button
+                  className="remove-btn"
+                  onClick={() =>
+                    handleRemoveEvent(event._id, event.event.eventId)
+                  }
+                >
+                  Remove
+                </button>
+                </>
+                )}
+              </div>
+              {isUpdateOpen && selectedId === event._id && (
                   <div className="modal">
                     <div className="modal-content">
                       <form>
                         <h1>Edit your preferences</h1>
                         <h2>
-                          Preference: How would you prefer to go to this event?
+                          <span>Preference:</span> How would you prefer to go to this event?
                           Let others know to get the optimal experience!
                         </h2>
                         <select
@@ -118,7 +134,7 @@ const ProfileEventList = ({ events }) => {
                           </option>
                         </select>
                         <h2>
-                          Status: Are you going? On the fence? Not planning on
+                          <span>Status:</span> Are you going? On the fence? Not planning on
                           attending? Let others know so they can discuss your
                           plans (and maybe convince you to go)!
                         </h2>
@@ -132,7 +148,7 @@ const ProfileEventList = ({ events }) => {
                           <option value="Not Going">Not Going</option>
                         </select>
                         <button
-                          className="add-btn"
+                          className="update-btn"
                           type="button"
                           onClick={handleFormSubmit}
                         >
@@ -142,20 +158,10 @@ const ProfileEventList = ({ events }) => {
                     </div>
                   </div>
                 )}
-                <button
-                  className="add-btn"
-                  onClick={() =>
-                    handleRemoveEvent(event._id, event.event.eventId)
-                  }
-                >
-                  Remove event
-                </button>
-              </div>
-            </div>
           </div>
         );
       })}
-    </StyledEventList>
+    </StyledProfileEventList>
   );
 };
 
