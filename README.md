@@ -41,7 +41,7 @@ Eventfull is being hosted by Heroku at this link:
   ## Contributors <a name ='contributors'></a>
   The following contributors were in charge of the development of Eventfull:
 
-  Joshua Lam - [joshualam071522](https://github.com/joshualam071522)
+  Joshua Lam - [joshualam071522](https://github.com/joshualam071522)  
   Giomendes Quezada - [Gioq89](https://github.com/Gioq89)  
   Riku Choy - [rikuchoy](https://github.com/rikuchoy)  
   Liana Pakingan - [lpakingan](https://github.com/lpakingan)  
