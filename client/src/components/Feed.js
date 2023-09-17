@@ -4,6 +4,8 @@ import { ADD_POST, REMOVE_POST, UPDATE_POST } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { StyledFeed } from "./styles/feed.styled";
+import { Icon } from '@iconify/react';
+
 
 const EventFeed = ({ posts, user_event_id }) => {
   const [postContent, setPostContent] = useState("");
@@ -99,31 +101,31 @@ const EventFeed = ({ posts, user_event_id }) => {
     <StyledFeed>
       {posts.map((post) => (
         <div className="post-container" key={post._id}>
-          <p>
-            <span>{post.user.username}</span> said:
-          </p>
+          <div className="post-btn-container">
+          {userData.username === post.user.username && (
+              <button
+                className="edit-btn"
+                onClick={() => [
+                  setUpdateField(true),
+                  setShowUpdatePost(false),
+                  setPostId(post._id),
+                ]}
+              >
+                <Icon icon="material-symbols:edit-outline" color="#ff424e" />
+              </button>
+            )}
+          {userData.username === post.user.username && (
+              <button
+                className="delete-btn"
+                onClick={() => handleRemovePost(post._id, post.user_event._id)}
+              >
+                <Icon icon="material-symbols:delete-outline" color="#ff424e" />
+              </button>
+            )}
+          </div>
+          <p><span>{post.user.username}</span> said:</p>
           <p>{post.content}</p>
           <p> {post.createdAt}</p>
-          {userData.username === post.user.username && (
-            <button
-              className="delete-btn"
-              onClick={() => handleRemovePost(post._id, post.user_event._id)}
-            >
-              Delete
-            </button>
-          )}
-          {userData.username === post.user.username && (
-            <button
-              className="edit-btn"
-              onClick={() => [
-                setUpdateField(true),
-                setShowUpdatePost(false),
-                setPostId(post._id),
-              ]}
-            >
-              Update
-            </button>
-          )}
         </div>
       ))}
       {showAddPost && (

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const StyledExploreSearchBar = styled.div`
-
+display: flex;
+flex-direction: column;
+align-items: center;
 margin: 10px;
 
 .event-search {

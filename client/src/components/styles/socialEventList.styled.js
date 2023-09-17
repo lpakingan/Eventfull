@@ -39,7 +39,7 @@ export const StyledSocialEventList = styled.div`
                 }
             }
 
-            button {
+            .add-btn {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -107,6 +107,17 @@ export const StyledSocialEventList = styled.div`
                 font-weight: 700;
             }
 
+        }
+    }
+
+    .view-container {
+
+        .login-message {
+            color: ${({ theme }) => theme.colors.header};
+        }
+        
+        a {
+            text-decoration: none;
         }
     }
 
