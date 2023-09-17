@@ -64,4 +64,12 @@ button {
         text-decoration: none;
     }
 }
+
+.success-message {
+    display: flex;
+    width: 100%;
+    margin: 20px auto;
+    font-size: 18px;
+    font-weight: 700;
+}
 `;
