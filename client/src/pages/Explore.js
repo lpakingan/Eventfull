@@ -12,6 +12,9 @@ const Explore = () => {
   // state for holding search input
   const [searchInput, setSearchInput] = useState("");
 
+  // state for checking if user has searched for events
+  const [searched, setSearched] = useState(false);
+
   // handle search input and send request to back-end for fetching data from API with API key (hidden from client)
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -45,6 +48,7 @@ const Explore = () => {
       console.log(eventData);
       setSearchedEvents(eventData);
       setSearchInput("");
+      setSearched(true);
     } catch (err) {
       console.error(err);
     }
@@ -70,11 +74,15 @@ const Explore = () => {
           </button>
         </form>
 
-        <h2>
-          {searchedEvents.length
-            ? `Viewing ${searchedEvents.length} Events:`
-            : "No events found!"}
-        </h2>
+        {searched && !searchedEvents.length && (
+          <h2>No events found!</h2>
+        )}
+
+        {searched && searchedEvents.length > 0 && (
+          <h2>{`Viewing ${searchedEvents.length} Events:`}</h2>
+
+        )}
+      
         <ExploreEventList events={searchedEvents} />
       </StyledExploreSearchBar>
     </>

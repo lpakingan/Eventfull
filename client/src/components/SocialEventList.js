@@ -41,7 +41,7 @@ const SocialEventList = ({ all_user_events }) => {
             <div className="view-container">
               {Auth.loggedIn() ? (
                 <button
-                  className="view-btn"
+                  className="add-btn"
                   onClick={() => toggleFeed(eventId)}
                 >
                   {openedFeed
@@ -50,7 +50,7 @@ const SocialEventList = ({ all_user_events }) => {
                 </button>
               ) : (
                 <Link to="/login">
-                  <p>Login to view posts!</p>
+                  <p className="login-message">Login to view posts!</p>
                 </Link>
               )}
 
