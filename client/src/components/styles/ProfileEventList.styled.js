@@ -23,6 +23,7 @@ export const StyledProfileEventList = styled.div`
         display: flex;
         flex-wrap: wrap;
         flex-shrink: 1;
+        max-width: 100%;
         padding: 1rem;
         margin: 1rem;
         justify-content: center;
@@ -36,6 +37,7 @@ export const StyledProfileEventList = styled.div`
         flex-direction: column;
         align-items: center;
         align-items: space-between;
+        max-width:50%;
 
         img {
         border: 1px solid ${({ theme }) => theme.colors.header};
