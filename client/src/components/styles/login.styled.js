@@ -70,13 +70,15 @@ export const StyledLogin = styled.div`
   }
 
   .signup-here {
-    padding-left: 70px;
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
     color: #797979;
     font-size: 18px;
   }
 
   .signup-here span {
+    margin-left: 5px;
     color: ${({ theme }) => theme.colors.header};
     cursor: pointer;
   }

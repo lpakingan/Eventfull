@@ -114,7 +114,7 @@ const Signup = () => {
           <div className="login-here">
             Have an account already?{" "}
             <a href="/login">
-              <span>Login Here!</span>
+              <span>Login</span>
             </a>
           </div>
           <div className="submit-container">

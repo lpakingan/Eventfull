@@ -88,7 +88,7 @@ const Login = () => {
           <div className="signup-here">
             Don't Have an account?
             <a href="/signup">
-              <span style={{padding: "10px 0"}}>Signup Here!</span>
+              <span style={{padding: "10px 0"}}>Create Account</span>
             </a>
           </div>
           <div className="submit-container">
