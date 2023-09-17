@@ -73,7 +73,8 @@ export const StyledSignup = styled.div`
       }
 
     .login-here {
-        padding-left: 70px;
+        display: flex;
+        justify-content: center;
         margin-top: 20px;
         color: #797979;
         font-size: 18px;
@@ -82,6 +83,7 @@ export const StyledSignup = styled.div`
     .login-here span {
         color: ${({ theme }) => theme.colors.header};
         cursor: pointer;
+        margin-left: 5px;
     }
 
     .submit-container {
