@@ -5,7 +5,7 @@ export const StyledLogin = styled.div`
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 50px;
     padding-bottom: 30px;
     width: 600px;
   }
