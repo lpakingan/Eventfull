@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER_EVENT, REMOVE_USER_EVENT } from "../utils/mutations";
-import { removeEventId } from "../utils/localStorage";
 import { Link } from "react-router-dom";
+const dateFormat = require("../utils/dateFormat");
 
 const ProfileEventList = ({ events }) => {
   const [updateUserEvent] = useMutation(UPDATE_USER_EVENT);
@@ -62,10 +62,6 @@ const ProfileEventList = ({ events }) => {
       const { data } = await removeUserEvent({
         variables: { userEvent: user_event },
       });
-      console.log(user_event, eventId);
-      console.log(data);
-      // fix this later
-      // removeEventId(String(eventId));
       window.location.reload();
     } catch (err) {
       console.error(err);
@@ -76,8 +72,9 @@ const ProfileEventList = ({ events }) => {
     return (
       <StyledProfileEventList>
         <h1>My Events</h1>
-        <h3>You don't have any events yet, find your next one
-          <Link to="/explore">  here!</Link>
+        <h3>
+          You don't have any events yet, find your next one
+          <Link to="/explore"> here!</Link>
         </h3>
       </StyledProfileEventList>
     );
@@ -95,14 +92,14 @@ const ProfileEventList = ({ events }) => {
             </div>
             <div className="Card-body">
               <h2>{event.event.venue}</h2>
-              <h2>{event.event.date}</h2>
+              <h2>{dateFormat(event.event.date)}</h2>
               <h2>{event.event.location}</h2>
               <h2>
-                <span>Status:</span> {event.preference}
+                <span>Status:</span> {event.status}
               </h2>
 
               <h2>
-                <span>Preference:</span> {event.status}
+                <span>Preference:</span> {event.preference}
               </h2>
             </div>
             <div className="btn-container">

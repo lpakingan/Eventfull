@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema({
     required: [true, "Title is required"],
   },
   date: {
-    type: Date,
+    type: String,
     required: [true, "Date is required"],
   },
   venue: {

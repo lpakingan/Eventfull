@@ -2,24 +2,13 @@ import { StyledEventList } from "./styles/eventList.styled";
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_USEREVENT } from "../utils/mutations";
-import { saveEventIds, getSavedEventIds } from "../utils/localStorage";
 import React, { useState, useEffect } from "react";
+const dateFormat = require("../utils/dateFormat");
 
 const EventList = ({ events }) => {
   const [addUserEvent, { error }] = useMutation(ADD_USEREVENT);
-  const [savedEventIds, setSavedEventIds] = useState(getSavedEventIds());
   const [successMessage, setSuccessMessage] = useState("");
   const [eventId, setEventId] = useState(null);
-
-  // for initial first save
-  useEffect(() => {
-    return () => saveEventIds(savedEventIds);
-  }, []);
-
-  // for any saves after first save
-  useEffect(() => {
-    saveEventIds(savedEventIds);
-  }, [savedEventIds]);
 
   const handleAddEvent = async (eventId) => {
     const eventToSave = events.find((event) => event.eventId === eventId);
@@ -36,9 +25,6 @@ const EventList = ({ events }) => {
         },
       });
       console.log(data);
-      // still working on getting this to fully function
-      setSavedEventIds([...savedEventIds, eventToSave.eventId]);
-      saveEventIds(savedEventIds);
       setTimeout(function () {
         window.location.href = "/profile";
       }, 3000);
@@ -59,33 +45,27 @@ const EventList = ({ events }) => {
             <div className="Card-body">
               <h2>{event.title}</h2>
               <p>{event.performer}</p>
-              <p>{event.date}</p>
+              <p>{dateFormat(event.date)}</p>
+              <p>{event.venue}</p>
               <p>{event.location}</p>
               <div className="add-container">
                 {Auth.loggedIn() && (
                   <button
                     className="add-btn"
-                    disabled={savedEventIds?.some(
-                      (savedId) => savedId === event.eventId
-                    )}
                     onClick={() => {
                       handleAddEvent(event.eventId);
                       setEventId(event.eventId);
                     }}
                   >
-                    {savedEventIds?.some(
-                      (savedEventId) => savedEventId === event.eventId
-                    )
-                      ? "Event Saved!"
-                      : "Save This Event!"}
+                    Save Event
                   </button>
-                )}
-                {eventId === event.eventId && (
-                  <div className="success-message">{successMessage}</div>
                 )}
                 <a href={event.link} target="_blank">
                   <button className="add-btn">Find Tickets</button>
                 </a>
+                {eventId === event.eventId && (
+                  <div className="success-message">{successMessage}</div>
+                )}
               </div>
             </div>
           </div>
