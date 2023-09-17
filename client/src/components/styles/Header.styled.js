@@ -4,7 +4,7 @@ export const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center; /* Center vertically */
-    background-color: ${({ theme }) => theme.colors.header};
+    background-color: white;
     padding: 20px;
     font-size: 1.5em;
 

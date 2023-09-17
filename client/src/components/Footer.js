@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFooter, StyledList, StyledListItem, StyledLink } from './styles/Footer.styled';
+import { StyledFooter, StyledList, StyledListItem, StyledLink, StyledIcon } from './styles/Footer.styled';
 import { useMatch, useResolvedPath } from 'react-router-dom';
 import Icon from './icons';
 
@@ -8,16 +8,13 @@ export default function Footer() {
     <StyledFooter>
       <StyledList>
         <CustomLink to="/explore" className="active">
-          <Icon icon="ph:compass-light" />
-          Explore
+          <StyledIcon><Icon icon="eos-icons:compass" /></StyledIcon>
         </CustomLink>
         <CustomLink to="/" className="active">
-        <Icon icon="iconoir:home" />
-          Home
+          <StyledIcon><Icon icon="clarity:home-solid" /></StyledIcon>
         </CustomLink>
         <CustomLink to="/social" className="active">
-          <Icon icon="lucide:party-popper" />
-          Social
+          <StyledIcon><Icon icon="lucide:party-popper" /></StyledIcon>
         </CustomLink>
       </StyledList>
     </StyledFooter>
