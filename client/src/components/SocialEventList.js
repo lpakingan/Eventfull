@@ -2,6 +2,8 @@ import { StyledSocialEventList } from "./styles/socialEventList.styled";
 import Auth from "../utils/auth";
 import React, { useState } from "react";
 import Feed from "./Feed";
+import { Link } from "react-router-dom";
+const dateFormat = require("../utils/dateFormat");
 
 const SocialEventList = ({ all_user_events }) => {
   const [openFeed, setOpenFeed] = useState({});
@@ -28,23 +30,28 @@ const SocialEventList = ({ all_user_events }) => {
               <img src={user_event.event.image} alt={user_event.event.title} />
               <h1>{user_event.event.title}</h1>
               <p>{user_event.event.venue}</p>
-              <p>{user_event.event.date}</p>
+              <p>{dateFormat(user_event.event.date)}</p>
               <p>
                 <span>Preference:</span> {user_event.preference}
               </p>
               <p>
                 <span>Status:</span> {user_event.status}
               </p>
-              <p>{user_event.feed.length} Posts</p>
             </div>
             <div className="view-container">
-              {Auth.loggedIn() && (
+              {Auth.loggedIn() ? (
                 <button
                   className="view-btn"
                   onClick={() => toggleFeed(eventId)}
                 >
-                  {openedFeed ? "Hide Posts" : "View Posts"}
+                  {openedFeed
+                    ? "Hide Posts"
+                    : `View ${user_event.feed.length} Post(s)`}
                 </button>
+              ) : (
+                <Link to="/login">
+                  <p>Login to view posts!</p>
+                </Link>
               )}
 
               {openedFeed && user_event.feed.length > 0 && (

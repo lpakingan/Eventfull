@@ -159,6 +159,7 @@ const EventFeed = ({ posts, user_event_id }) => {
           <form onSubmit={(event) => handleUpdatePost(event, postId)}>
             <textarea
               type="text"
+              placeholder="Update post!"
               value={postContent}
               onChange={handleInputChange}
             />

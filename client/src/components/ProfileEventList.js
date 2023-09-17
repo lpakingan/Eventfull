@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER_EVENT, REMOVE_USER_EVENT } from "../utils/mutations";
 import { Link } from "react-router-dom";
+const dateFormat = require("../utils/dateFormat");
 
 const ProfileEventList = ({ events }) => {
   const [updateUserEvent] = useMutation(UPDATE_USER_EVENT);
@@ -91,14 +92,14 @@ const ProfileEventList = ({ events }) => {
             </div>
             <div className="Card-body">
               <h2>{event.event.venue}</h2>
-              <h2>{event.event.date}</h2>
+              <h2>{dateFormat(event.event.date)}</h2>
               <h2>{event.event.location}</h2>
               <h2>
-                <span>Status:</span> {event.preference}
+                <span>Status:</span> {event.status}
               </h2>
 
               <h2>
-                <span>Preference:</span> {event.status}
+                <span>Preference:</span> {event.preference}
               </h2>
             </div>
             <div className="btn-container">
