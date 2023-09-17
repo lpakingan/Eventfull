@@ -104,4 +104,8 @@ export const StyledSignup = styled.div`
         cursor: pointer;
     }
 
+    a {
+        text-decoration: none;
+    }
+
 `;

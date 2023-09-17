@@ -15,6 +15,7 @@ import Profile from "./components/profile";
 import Explore from "./pages/Explore";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./components/styles/theme";
 import GlobalStyles from "./components/styles/Global";
@@ -56,6 +57,7 @@ function App() {
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="*" element={<NotFound/>} />
           </Routes>
           <Footer />
         </BrowserRouter>

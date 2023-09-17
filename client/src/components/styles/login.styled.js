@@ -100,4 +100,8 @@ export const StyledLogin = styled.div`
     color: #fff;
     cursor: pointer;
   }
+
+  a {
+    text-decoration: none;
+  }
 `;

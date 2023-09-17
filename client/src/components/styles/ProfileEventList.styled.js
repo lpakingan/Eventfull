@@ -41,7 +41,8 @@ export const StyledProfileEventList = styled.div`
 
         img {
         border: 1px solid ${({ theme }) => theme.colors.header};
-        min-width:0;
+        max-width:100%;
+        max-height:100%;
         }
     }
 
