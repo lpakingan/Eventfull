@@ -1,42 +1,28 @@
+// home.js
 import React from 'react';
-import { StyledSocialFeed } from './styles/socialFeed.styled';
-import { PostContainer } from './styles/socialFeed.styled';
-import { UserImage } from './styles/socialFeed.styled';
-import { UserInfo } from './styles/socialFeed.styled';
-import { UserName } from './styles/socialFeed.styled';
-import { PostContent } from './styles/socialFeed.styled';
+import { StyledHome, StyledIcon } from './styles/home.styled';
+import favicon from "../assets/eventfull_favicon.png";
+import Icon from './icons';
 
-
-export default function SocialFeed() {
-    return (
-      <StyledSocialFeed>
-        <h1>Live Feed</h1>
-        {/* Example posts */}
-        <PostContainer>
-          <UserImage />
-          <UserInfo>
-            <UserName>User123</UserName>
-            <PostContent>
-              iahdsfashfalkjsdf.
-            </PostContent>
-          </UserInfo>
-        </PostContainer>
-  
-        <PostContainer>
-          <UserImage />
-          <UserInfo>
-            <UserName>User456</UserName>
-            <PostContent>
-              asdfksadfkjafds
-            </PostContent>
-          </UserInfo>
-        </PostContainer>
-        {/* Add more posts as needed */}
-      </StyledSocialFeed>
-    );
-  }
-  
-  
-  
-  
-  
+export default function SocialHome() {
+  return (
+    <StyledHome>
+      <h1>Experience Live Events</h1>
+      <h2>Your Way. Your People.</h2>
+      <div className="h3-container">
+        <div className="h3-item">
+          <StyledIcon><Icon icon="eos-icons:compass" /></StyledIcon>
+          <h3>Explore countless live events</h3>
+        </div>
+        <div className="h3-item">
+          <img src={favicon} alt='logo'></img>
+        </div>
+        <div className="h3-item">
+          <StyledIcon><Icon icon="lucide:party-popper" /></StyledIcon>
+          <h3>Connect with others who share the same passion</h3>
+        </div>
+      </div>
+      <h3>Experience your next event like never before</h3>
+    </StyledHome>
+  );
+}
