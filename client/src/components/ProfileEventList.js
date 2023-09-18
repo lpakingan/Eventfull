@@ -12,8 +12,8 @@ const ProfileEventList = ({ events }) => {
   const [isUpdateOpen, setisUpdateOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const [updatedData, setUpdatedData] = useState({
-    preference: "Interested",
-    status: "No preference",
+    preference: "No preference",
+    status: "Interested",
   });
 
   const handleInputChange = (event) => {
