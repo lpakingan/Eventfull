@@ -1,5 +1,7 @@
 # Eventfull
 
+  ![My Image](/readme-img.png)
+
   ## Description
   Eventfull strives on making event experiences more full by creating a networking platform for event-goers. Whether it be for a concert or convention, Eventfull offers users the ability to connect pre-event in order to optimize their experiences during them. By finding and adding events they are interested in to the site-wide social feed, users can interact with one another and gain new perspectives on events they may not have had prior.
 
@@ -20,7 +22,7 @@ The motivation behind Eventfull comes from the dreaded planning stage before att
 - Interact with other users on event posts
 
 ## Usage <a name ='usage'></a>
-Eventfull can be accessed via Heroku at [this link](). When first visiting Eventfull, new users can browse through the Explore or Social pages to search through SeatGeek events or see what site users have posted, however access to saving events and interacting with other users is restricted until logging in/signing up.    
+Eventfull can be accessed via Heroku at [this link](https://eventfull-c6ee6f293464.herokuapp.com/). When first visiting Eventfull, new users can browse through the Explore or Social pages to search through SeatGeek events or see what site users have posted, however access to saving events and interacting with other users is restricted until logging in/signing up.    
     
 Once logged in, users will have access to their user profile where they can add events they find from the Explore page. On the Explore page, users can search for any events they are interested in by typing in the name of the event or the performer (if a concert). If there is preference for searching by a location instead, the user can type in the city where they would like to attend the event. Once a user finds an event they are interested in, they can either add the event to their profile or find tickets for the event (where they will be redirected to the SeatGeek ticketing site for that particular event). If an event is added, the user will be redirected to their profile where they can fill out their preferences (No preference, Want a Group or Want to go Solo) and status (Interested, Going, Not Going) regarding the event; these are shown on the event's dedicated post on the Social feed of the site.   
     
@@ -29,7 +31,7 @@ The Social page is populated based on what events Eventfull users have added to 
 ![]()
 
 ## Deployed Application <a name ='deployed'></a>
-Eventfull is being hosted by Heroku at this link: 
+Eventfull is being hosted by Heroku at this link: https://eventfull-c6ee6f293464.herokuapp.com/
 
   ## License <a name ='license'></a>
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\

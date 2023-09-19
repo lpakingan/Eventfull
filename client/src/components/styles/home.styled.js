@@ -41,7 +41,6 @@ export const StyledHome = styled.div`
   /* Add styles for h1 and h2 */
   h1 {
     text-align: center;
-    font-family: 'Eczar', serif; /* Use the Eczar font for h1 */
     font-weight: bold; /* Make h1 bold */
     font-size: 3em; /* Adjust the font size as needed */
     color: #ff424e;
@@ -50,14 +49,12 @@ export const StyledHome = styled.div`
 
   h2 {
     text-align: center;
-    font-family: 'Eczar', serif; /* Use the Eczar font for h1 */
     font-weight: bold; /* Make h1 bold */
     font-size: 2em; /* Adjust the font size as needed */
   }
 
   h3 {
     text-align: center;
-    font-family: 'Eczar', serif; /* Use the Eczar font for h1 */
     font-weight: bold; /* Make h1 bold */
     font-size: 1.5em; /* Adjust the font size as needed */
   }
